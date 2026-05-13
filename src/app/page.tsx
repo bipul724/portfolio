@@ -93,14 +93,14 @@ export default function Home() {
                 <Reveal delay={100}>
                     <div style={{
                         display: 'grid',
-                        gridTemplateColumns: '3fr 1fr',
-                        gap: '48px',
-                        alignItems: 'center',
+                        gridTemplateColumns: '1fr',
+                        gap: '24px',
                     }}>
                         <p style={{
                             fontSize: '1rem',
                             color: 'var(--text-secondary)',
                             lineHeight: 1.8,
+                            maxWidth: '800px',
                         }}>
                             I&apos;m a Full Stack Developer currently pursuing my B.Tech in Computer Science at
                             <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}> ABES Engineering College</span>. I have
@@ -108,65 +108,8 @@ export default function Home() {
                             React.js, Next.js, and Node.js. I&apos;m passionate about creating efficient, user-friendly web
                             experiences and constantly exploring new tools and frameworks.
                         </p>
-                        <div className="about-image-wrapper" style={{
-                            position: 'relative',
-                            maxWidth: '200px',
-                            justifySelf: 'center',
-                        }}>
-                            <div style={{
-                                position: 'relative',
-                                borderRadius: 'var(--radius-lg)',
-                                overflow: 'hidden',
-                                border: '1px solid var(--border-hover)',
-                                transition: 'all var(--transition-base)',
-                            }}>
-                                <img
-                                    src="/bipul.jpg"
-                                    alt="Bipul Chamoli"
-                                    style={{
-                                        width: '100%',
-                                        display: 'block',
-                                        filter: 'grayscale(20%)',
-                                        transition: 'filter var(--transition-base)',
-                                    }}
-                                />
-                                <div style={{
-                                    position: 'absolute',
-                                    inset: 0,
-                                    background: 'var(--accent-subtle)',
-                                    transition: 'opacity var(--transition-base)',
-                                    opacity: 0,
-                                }} />
-                            </div>
-                            {/* Decorative offset border */}
-                            <div style={{
-                                position: 'absolute',
-                                top: '12px',
-                                left: '12px',
-                                right: '-12px',
-                                bottom: '-12px',
-                                border: '1px solid var(--border-color)',
-                                borderRadius: 'var(--radius-lg)',
-                                zIndex: -1,
-                                transition: 'all var(--transition-base)',
-                            }} />
-                        </div>
                     </div>
                 </Reveal>
-                <style>{`
-                    @media (max-width: 768px) {
-                        #about .section-title + div + div > div {
-                            grid-template-columns: 1fr !important;
-                        }
-                        #about .reveal:nth-child(2) > div {
-                            grid-template-columns: 1fr !important;
-                        }
-                        .about-image-wrapper {
-                            order: -1;
-                            max-width: 160px !important;
-                        }
-                    }
-                `}</style>
             </section>
 
             {/* Education */}
