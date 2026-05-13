@@ -227,7 +227,7 @@ export default function Home() {
                 }}>
                     {Object.entries(skills).map(([category, items], i) => (
                         <Reveal key={category} delay={i * 80}>
-                            <div className="glass-card" style={{ padding: '24px 28px' }}>
+                            <div className="glass-card" style={{ padding: '24px 28px', height: '100%' }}>
                                 <h3 style={{
                                     fontSize: '0.75rem',
                                     fontWeight: 600,

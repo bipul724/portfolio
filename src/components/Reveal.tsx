@@ -31,7 +31,7 @@ export default function Reveal({ children, delay = 0 }: RevealProps) {
     }, [delay]);
 
     return (
-        <div ref={ref} className="reveal">
+        <div ref={ref} className="reveal" style={{ height: '100%' }}>
             {children}
         </div>
     );
