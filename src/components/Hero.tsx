@@ -5,84 +5,78 @@ export default function Hero() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '120px 24px 80px',
+            padding: '140px 24px 100px',
             position: 'relative',
-            overflow: 'hidden',
         }}>
-            {/* Background gradient orbs */}
             <div style={{
-                position: 'absolute',
-                top: '-20%',
-                right: '-10%',
-                width: '600px',
-                height: '600px',
-                borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(108, 99, 255, 0.08) 0%, transparent 70%)',
-                pointerEvents: 'none',
-            }} />
-            <div style={{
-                position: 'absolute',
-                bottom: '-20%',
-                left: '-10%',
-                width: '500px',
-                height: '500px',
-                borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%)',
-                pointerEvents: 'none',
-            }} />
-
-            <div style={{
-                maxWidth: '800px',
+                maxWidth: '720px',
                 position: 'relative',
                 zIndex: 1,
-            }} className="animate-in">
-                <p style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.875rem',
-                    color: 'var(--accent)',
-                    marginBottom: '16px',
-                    letterSpacing: '0.05em',
+            }}>
+                <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '6px 12px',
+                    borderRadius: '100px',
+                    border: '1px solid var(--border-color)',
+                    background: 'var(--bg-card)',
+                    marginBottom: '32px',
                 }}>
-                    Hi, my name is
-                </p>
+                    <span style={{
+                        width: '6px',
+                        height: '6px',
+                        borderRadius: '50%',
+                        background: 'var(--accent-light)',
+                    }} />
+                    <span style={{
+                        fontFamily: 'var(--font-main)',
+                        fontSize: '0.75rem',
+                        fontWeight: 500,
+                        color: 'var(--text-secondary)',
+                    }}>
+                        Available for opportunities
+                    </span>
+                </div>
 
                 <h1 style={{
-                    fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',
-                    fontWeight: 900,
-                    lineHeight: 1.1,
-                    letterSpacing: '-0.03em',
-                    marginBottom: '12px',
+                    fontSize: 'clamp(2.5rem, 6vw, 3.5rem)',
+                    fontWeight: 700,
+                    lineHeight: 1.2,
+                    letterSpacing: '-0.02em',
+                    marginBottom: '16px',
+                    color: 'var(--text-primary)',
                 }}>
-                    Bipul Chamoli.
+                    Hi, I&apos;m Bipul Chamoli.
                 </h1>
 
                 <h2 style={{
-                    fontSize: 'clamp(1.5rem, 5vw, 3rem)',
-                    fontWeight: 800,
-                    lineHeight: 1.2,
+                    fontSize: 'clamp(1.5rem, 4vw, 2.25rem)',
+                    fontWeight: 500,
+                    lineHeight: 1.3,
                     color: 'var(--text-secondary)',
                     marginBottom: '24px',
-                    letterSpacing: '-0.02em',
+                    letterSpacing: '-0.01em',
                 }}>
-                    I build things for the web.
+                    I build reliable web applications.
                 </h2>
 
                 <p style={{
-                    fontSize: '1.1rem',
+                    fontSize: '1rem',
                     lineHeight: 1.7,
-                    color: 'var(--text-secondary)',
-                    maxWidth: '540px',
+                    color: 'var(--text-muted)',
+                    maxWidth: '520px',
                     marginBottom: '40px',
                 }}>
-                    Full Stack Developer with hands-on experience in frontend and backend development 
-                    using <span style={{ color: 'var(--text-primary)' }}>React.js, Next.js, Node.js</span>, and REST APIs. 
-                    Strong foundation in OOP, Data Structures & Algorithms, and database systems.
+                    Full Stack Developer with a focus on writing clean, scalable code.
+                    I specialize in modern frontend and backend development using 
+                    <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}> React.js, Next.js, </span> and 
+                    <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}> Node.js</span>.
                 </p>
 
                 <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                     <a href="#projects" className="btn-primary">
-                        View My Work
-                        <span style={{ fontSize: '1.1rem' }}>→</span>
+                        View Projects
                     </a>
                     <a href="#contact" className="btn-outline">
                         Get In Touch

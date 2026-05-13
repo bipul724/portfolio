@@ -1,5 +1,6 @@
 import Hero from '../components/Hero';
 import ProjectCard from '../components/ProjectCard';
+import Reveal from '../components/Reveal';
 
 const projects = [
     {
@@ -84,73 +85,80 @@ export default function Home() {
 
             {/* About */}
             <section id="about" className="section">
-                <h2 className="section-title">
-                    <span className="number">01.</span> About Me
-                </h2>
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: '3fr 1fr',
-                    gap: '48px',
-                    alignItems: 'center',
-                }}>
-                    <p style={{
-                        fontSize: '1rem',
-                        color: 'var(--text-secondary)',
-                        lineHeight: 1.8,
+                <Reveal>
+                    <h2 className="section-title">
+                        <span className="number">01.</span> About Me
+                    </h2>
+                </Reveal>
+                <Reveal delay={100}>
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: '3fr 1fr',
+                        gap: '48px',
+                        alignItems: 'center',
                     }}>
-                        I&apos;m a Full Stack Developer currently pursuing my B.Tech in Computer Science at
-                        <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}> ABES Engineering College</span>. I have
-                        hands-on experience building scalable full-stack applications using modern technologies like
-                        React.js, Next.js, and Node.js. I&apos;m passionate about creating efficient, user-friendly web
-                        experiences and constantly exploring new tools and frameworks.
-                    </p>
-                    <div className="about-image-wrapper" style={{
-                        position: 'relative',
-                        maxWidth: '200px',
-                        justifySelf: 'center',
-                    }}>
-                        <div style={{
-                            position: 'relative',
-                            borderRadius: 'var(--radius-lg)',
-                            overflow: 'hidden',
-                            border: '2px solid var(--border-hover)',
-                            transition: 'all var(--transition-base)',
+                        <p style={{
+                            fontSize: '1rem',
+                            color: 'var(--text-secondary)',
+                            lineHeight: 1.8,
                         }}>
-                            <img
-                                src="/bipul.jpg"
-                                alt="Bipul Chamoli"
-                                style={{
-                                    width: '100%',
-                                    display: 'block',
-                                    filter: 'grayscale(20%)',
-                                    transition: 'filter var(--transition-base)',
-                                }}
-                            />
+                            I&apos;m a Full Stack Developer currently pursuing my B.Tech in Computer Science at
+                            <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}> ABES Engineering College</span>. I have
+                            hands-on experience building scalable full-stack applications using modern technologies like
+                            React.js, Next.js, and Node.js. I&apos;m passionate about creating efficient, user-friendly web
+                            experiences and constantly exploring new tools and frameworks.
+                        </p>
+                        <div className="about-image-wrapper" style={{
+                            position: 'relative',
+                            maxWidth: '200px',
+                            justifySelf: 'center',
+                        }}>
+                            <div style={{
+                                position: 'relative',
+                                borderRadius: 'var(--radius-lg)',
+                                overflow: 'hidden',
+                                border: '1px solid var(--border-hover)',
+                                transition: 'all var(--transition-base)',
+                            }}>
+                                <img
+                                    src="/bipul.jpg"
+                                    alt="Bipul Chamoli"
+                                    style={{
+                                        width: '100%',
+                                        display: 'block',
+                                        filter: 'grayscale(20%)',
+                                        transition: 'filter var(--transition-base)',
+                                    }}
+                                />
+                                <div style={{
+                                    position: 'absolute',
+                                    inset: 0,
+                                    background: 'var(--accent-subtle)',
+                                    transition: 'opacity var(--transition-base)',
+                                    opacity: 0,
+                                }} />
+                            </div>
+                            {/* Decorative offset border */}
                             <div style={{
                                 position: 'absolute',
-                                inset: 0,
-                                background: 'linear-gradient(135deg, rgba(108, 99, 255, 0.1), transparent)',
-                                transition: 'opacity var(--transition-base)',
+                                top: '12px',
+                                left: '12px',
+                                right: '-12px',
+                                bottom: '-12px',
+                                border: '1px solid var(--border-color)',
+                                borderRadius: 'var(--radius-lg)',
+                                zIndex: -1,
+                                transition: 'all var(--transition-base)',
                             }} />
                         </div>
-                        {/* Decorative offset border */}
-                        <div style={{
-                            position: 'absolute',
-                            top: '14px',
-                            left: '14px',
-                            right: '-14px',
-                            bottom: '-14px',
-                            border: '2px solid var(--accent)',
-                            borderRadius: 'var(--radius-lg)',
-                            zIndex: -1,
-                            transition: 'all var(--transition-base)',
-                            opacity: 0.4,
-                        }} />
                     </div>
-                </div>
+                </Reveal>
                 <style>{`
                     @media (max-width: 768px) {
-                        #about .section-title + div {
+                        #about .section-title + div + div > div {
+                            grid-template-columns: 1fr !important;
+                        }
+                        #about .reveal:nth-child(2) > div {
                             grid-template-columns: 1fr !important;
                         }
                         .about-image-wrapper {
@@ -163,156 +171,188 @@ export default function Home() {
 
             {/* Education */}
             <section className="section" style={{ paddingTop: 0 }}>
-                <h2 className="section-title">
-                    <span className="number">02.</span> Education
-                </h2>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <Reveal>
+                    <h2 className="section-title">
+                        <span className="number">02.</span> Education
+                    </h2>
+                </Reveal>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     {education.map((edu, i) => (
-                        <div key={i} className="glass-card" style={{ padding: '28px 32px' }}>
-                            <div style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                alignItems: 'flex-start',
-                                flexWrap: 'wrap',
-                                gap: '8px',
-                                marginBottom: '8px',
-                            }}>
-                                <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>{edu.degree}</h3>
-                                <span style={{
-                                    fontFamily: 'var(--font-mono)',
-                                    fontSize: '0.8rem',
-                                    color: 'var(--accent)',
+                        <Reveal key={i} delay={i * 100}>
+                            <div className="glass-card" style={{ padding: '28px 32px' }}>
+                                <div style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'flex-start',
+                                    flexWrap: 'wrap',
+                                    gap: '8px',
+                                    marginBottom: '8px',
                                 }}>
-                                    {edu.period}
-                                </span>
+                                    <h3 style={{ fontSize: '1.05rem', fontWeight: 700 }}>{edu.degree}</h3>
+                                    <span style={{
+                                        fontFamily: 'var(--font-mono)',
+                                        fontSize: '0.75rem',
+                                        color: 'var(--text-muted)',
+                                        padding: '2px 10px',
+                                        borderRadius: '4px',
+                                        background: 'var(--accent-subtle)',
+                                        border: '1px solid var(--border-color)',
+                                    }}>
+                                        {edu.period}
+                                    </span>
+                                </div>
+                                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: '6px' }}>
+                                    {edu.school}
+                                </p>
+                                <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                                    {edu.detail}
+                                </p>
                             </div>
-                            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '6px' }}>
-                                {edu.school}
-                            </p>
-                            <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
-                                {edu.detail}
-                            </p>
-                        </div>
+                        </Reveal>
                     ))}
                 </div>
             </section>
 
             {/* Skills */}
             <section id="skills" className="section" style={{ paddingTop: 0 }}>
-                <h2 className="section-title">
-                    <span className="number">03.</span> Technical Skills
-                </h2>
+                <Reveal>
+                    <h2 className="section-title">
+                        <span className="number">03.</span> Technical Skills
+                    </h2>
+                </Reveal>
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                    gap: '20px',
+                    gap: '16px',
                 }}>
-                    {Object.entries(skills).map(([category, items]) => (
-                        <div key={category} className="glass-card" style={{ padding: '24px 28px' }}>
-                            <h3 style={{
-                                fontSize: '0.8rem',
-                                fontWeight: 600,
-                                textTransform: 'uppercase',
-                                letterSpacing: '0.08em',
-                                color: 'var(--accent)',
-                                marginBottom: '16px',
-                                fontFamily: 'var(--font-mono)',
-                            }}>
-                                {category}
-                            </h3>
-                            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                                {items.map(item => (
-                                    <span key={item} className="tag">{item}</span>
-                                ))}
+                    {Object.entries(skills).map(([category, items], i) => (
+                        <Reveal key={category} delay={i * 80}>
+                            <div className="glass-card" style={{ padding: '24px 28px' }}>
+                                <h3 style={{
+                                    fontSize: '0.75rem',
+                                    fontWeight: 600,
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.1em',
+                                    color: 'var(--accent)',
+                                    marginBottom: '16px',
+                                    fontFamily: 'var(--font-mono)',
+                                }}>
+                                    {category}
+                                </h3>
+                                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                                    {items.map(item => (
+                                        <span key={item} className="tag">{item}</span>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        </Reveal>
                     ))}
                 </div>
             </section>
 
             {/* Projects */}
             <section id="projects" className="section" style={{ paddingTop: 0 }}>
-                <h2 className="section-title">
-                    <span className="number">04.</span> Projects
-                </h2>
+                <Reveal>
+                    <h2 className="section-title">
+                        <span className="number">04.</span> Projects
+                    </h2>
+                </Reveal>
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                    gap: '24px',
+                    gap: '20px',
                 }}>
                     {projects.map((project, index) => (
-                        <ProjectCard key={index} {...project} />
+                        <Reveal key={index} delay={index * 120}>
+                            <ProjectCard {...project} />
+                        </Reveal>
                     ))}
                 </div>
             </section>
 
             {/* Achievements */}
             <section id="achievements" className="section" style={{ paddingTop: 0 }}>
-                <h2 className="section-title">
-                    <span className="number">05.</span> Achievements
-                </h2>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <Reveal>
+                    <h2 className="section-title">
+                        <span className="number">05.</span> Achievements
+                    </h2>
+                </Reveal>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     {achievements.map((a, i) => (
-                        <div key={i} className="glass-card" style={{ padding: '28px 32px' }}>
-                            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '10px' }}>
-                                {a.title}
-                            </h3>
-                            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-                                {a.description}
-                            </p>
-                        </div>
+                        <Reveal key={i} delay={i * 100}>
+                            <div className="glass-card" style={{ padding: '28px 32px' }}>
+                                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '10px' }}>
+                                    {a.title}
+                                </h3>
+                                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+                                    {a.description}
+                                </p>
+                            </div>
+                        </Reveal>
                     ))}
                 </div>
             </section>
 
             {/* Contact */}
             <section id="contact" className="section" style={{ textAlign: 'center', paddingTop: '40px' }}>
-                <p style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.875rem',
-                    color: 'var(--accent)',
-                    marginBottom: '16px',
-                }}>
-                    06. What&apos;s Next?
-                </p>
-                <h2 style={{
-                    fontSize: 'clamp(2rem, 5vw, 3rem)',
-                    fontWeight: 800,
-                    marginBottom: '20px',
-                    letterSpacing: '-0.02em',
-                }}>
-                    Get In Touch
-                </h2>
-                <p style={{
-                    fontSize: '1rem',
-                    color: 'var(--text-secondary)',
-                    maxWidth: '500px',
-                    margin: '0 auto 40px',
-                    lineHeight: 1.7,
-                }}>
-                    I&apos;m currently looking for opportunities to work on exciting projects. Whether you have a question
-                    or just want to say hi, feel free to reach out!
-                </p>
-                <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                    <a href="mailto:bipulchamoli45@gmail.com" className="btn-primary">
-                        Say Hello
-                        <span>→</span>
-                    </a>
-                    <a href="https://github.com/bipul724" target="_blank" rel="noopener noreferrer" className="btn-outline">
-                        GitHub
-                    </a>
-                    <a href="https://leetcode.com/u/Bipul_Chamoli" target="_blank" rel="noopener noreferrer" className="btn-outline">
-                        LeetCode
-                    </a>
-                </div>
-                <p style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.8rem',
-                    color: 'var(--text-muted)',
-                    marginTop: '24px',
-                }}>
-                    bipulchamoli45@gmail.com · 9149199508
-                </p>
+                <Reveal>
+                    <p style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.8rem',
+                        color: 'var(--accent)',
+                        marginBottom: '16px',
+                        letterSpacing: '0.04em',
+                    }}>
+                        06. What&apos;s Next?
+                    </p>
+                </Reveal>
+                <Reveal delay={100}>
+                    <h2 style={{
+                        fontSize: 'clamp(2rem, 5vw, 3rem)',
+                        fontWeight: 800,
+                        marginBottom: '20px',
+                        letterSpacing: '-0.03em',
+                    }}>
+                        Get In Touch
+                    </h2>
+                </Reveal>
+                <Reveal delay={200}>
+                    <p style={{
+                        fontSize: '1rem',
+                        color: 'var(--text-secondary)',
+                        maxWidth: '500px',
+                        margin: '0 auto 40px',
+                        lineHeight: 1.8,
+                    }}>
+                        I&apos;m currently looking for opportunities to work on exciting projects. Whether you have a question
+                        or just want to say hi, feel free to reach out!
+                    </p>
+                </Reveal>
+                <Reveal delay={300}>
+                    <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <a href="mailto:bipulchamoli45@gmail.com" className="btn-primary">
+                            Say Hello
+                            <span>→</span>
+                        </a>
+                        <a href="https://github.com/bipul724" target="_blank" rel="noopener noreferrer" className="btn-outline">
+                            GitHub
+                        </a>
+                        <a href="https://leetcode.com/u/Bipul_Chamoli" target="_blank" rel="noopener noreferrer" className="btn-outline">
+                            LeetCode
+                        </a>
+                    </div>
+                </Reveal>
+                <Reveal delay={350}>
+                    <p style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.75rem',
+                        color: 'var(--text-muted)',
+                        marginTop: '28px',
+                        letterSpacing: '0.02em',
+                    }}>
+                        bipulchamoli45@gmail.com · 9149199508
+                    </p>
+                </Reveal>
             </section>
         </main>
     );

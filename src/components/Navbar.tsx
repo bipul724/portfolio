@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const navLinks = [
     { label: 'About', href: '#about' },
@@ -13,40 +13,25 @@ const navLinks = [
 
 export default function Navbar() {
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 20);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
-        <nav style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            zIndex: 1000,
-            padding: '0 24px',
-            height: '64px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            background: 'rgba(10, 10, 15, 0.8)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            borderBottom: '1px solid var(--border-color)',
-        }}>
+        <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
             <Link href="/" style={{
-                fontSize: '1.125rem',
-                fontWeight: 700,
-                letterSpacing: '-0.02em',
+                fontSize: '1rem',
+                fontWeight: 600,
+                letterSpacing: '-0.01em',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
+                color: 'var(--text-primary)'
             }}>
-                <span style={{
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    background: 'var(--accent)',
-                    boxShadow: '0 0 12px var(--accent)',
-                    animation: 'pulse-glow 2s ease-in-out infinite',
-                }} />
                 Bipul Chamoli
             </Link>
 
@@ -54,15 +39,15 @@ export default function Navbar() {
             <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '32px',
+                gap: '24px',
             }} className="desktop-nav">
                 {navLinks.map(link => (
                     <Link
                         key={link.label}
                         href={link.href}
                         style={{
-                            fontSize: '0.875rem',
-                            fontWeight: 500,
+                            fontSize: '0.85rem',
+                            fontWeight: 400,
                             color: 'var(--text-secondary)',
                             transition: 'color var(--transition-fast)',
                         }}
@@ -72,7 +57,7 @@ export default function Navbar() {
                         {link.label}
                     </Link>
                 ))}
-                <a href="mailto:bipulchamoli45@gmail.com" className="btn-primary" style={{ padding: '8px 20px', fontSize: '0.8rem' }}>
+                <a href="mailto:bipulchamoli45@gmail.com" className="btn-primary" style={{ padding: '8px 16px', fontSize: '0.8rem', borderRadius: '100px' }}>
                     Hire Me
                 </a>
             </div>
@@ -92,27 +77,28 @@ export default function Navbar() {
                 }}
                 aria-label="Toggle menu"
             >
-                <span style={{ width: '24px', height: '2px', background: 'var(--text-primary)', borderRadius: '2px', transition: 'all 0.3s', transform: mobileOpen ? 'rotate(45deg) translateY(7px)' : 'none' }} />
-                <span style={{ width: '24px', height: '2px', background: 'var(--text-primary)', borderRadius: '2px', transition: 'all 0.3s', opacity: mobileOpen ? 0 : 1 }} />
-                <span style={{ width: '24px', height: '2px', background: 'var(--text-primary)', borderRadius: '2px', transition: 'all 0.3s', transform: mobileOpen ? 'rotate(-45deg) translateY(-7px)' : 'none' }} />
+                <span style={{ width: '22px', height: '2px', background: 'var(--text-primary)', borderRadius: '2px', transition: 'all 0.3s', transform: mobileOpen ? 'rotate(45deg) translateY(7px)' : 'none' }} />
+                <span style={{ width: '22px', height: '2px', background: 'var(--text-primary)', borderRadius: '2px', transition: 'all 0.3s', opacity: mobileOpen ? 0 : 1 }} />
+                <span style={{ width: '22px', height: '2px', background: 'var(--text-primary)', borderRadius: '2px', transition: 'all 0.3s', transform: mobileOpen ? 'rotate(-45deg) translateY(-7px)' : 'none' }} />
             </button>
 
             {/* Mobile Menu */}
             {mobileOpen && (
                 <div style={{
                     position: 'fixed',
-                    top: '64px',
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'rgba(10, 10, 15, 0.95)',
-                    backdropFilter: 'blur(20px)',
+                    top: '72px',
+                    left: '16px',
+                    right: '16px',
+                    background: 'var(--bg-secondary)',
+                    border: '1px solid var(--border-color)',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '32px',
+                    gap: '20px',
+                    padding: '32px 24px',
                     zIndex: 999,
+                    borderRadius: 'var(--radius-lg)',
+                    boxShadow: 'var(--shadow-lg)'
                 }}>
                     {navLinks.map(link => (
                         <Link
@@ -120,16 +106,18 @@ export default function Navbar() {
                             href={link.href}
                             onClick={() => setMobileOpen(false)}
                             style={{
-                                fontSize: '1.25rem',
-                                fontWeight: 600,
+                                fontSize: '1rem',
+                                fontWeight: 500,
                                 color: 'var(--text-secondary)',
                                 transition: 'color var(--transition-fast)',
                             }}
+                            onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
+                            onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
                         >
                             {link.label}
                         </Link>
                     ))}
-                    <a href="mailto:bipulchamoli45@gmail.com" className="btn-primary">
+                    <a href="mailto:bipulchamoli45@gmail.com" className="btn-primary" style={{ width: '100%', textAlign: 'center', justifyContent: 'center' }}>
                         Hire Me
                     </a>
                 </div>

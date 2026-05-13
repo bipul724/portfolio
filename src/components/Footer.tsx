@@ -12,6 +12,8 @@ export default function Footer() {
             padding: '40px 24px',
             borderTop: '1px solid var(--border-color)',
             textAlign: 'center',
+            position: 'relative',
+            zIndex: 1,
         }}>
             <div style={{
                 display: 'flex',
@@ -28,10 +30,11 @@ export default function Footer() {
                         style={{
                             fontSize: '0.85rem',
                             color: 'var(--text-muted)',
-                            transition: 'color var(--transition-fast)',
+                            transition: 'all var(--transition-fast)',
+                            fontWeight: 500,
                         }}
-                        onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent-light)')}
-                        onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}
+                        onMouseEnter={e => { e.currentTarget.style.color = 'var(--text-primary)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.color = 'var(--text-muted)'; }}
                     >
                         {link.label}
                     </a>
@@ -42,7 +45,7 @@ export default function Footer() {
                 fontSize: '0.75rem',
                 color: 'var(--text-muted)',
             }}>
-                Designed & Built by Bipul Chamoli
+                Designed &amp; Built by Bipul Chamoli
             </p>
         </footer>
     );
