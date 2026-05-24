@@ -34,6 +34,7 @@ const projects = [
         description: 'Next.js, TypeScript, ShadCN UI, Neon (PostgreSQL), Better Auth',
         tags: ['Next.js', 'TypeScript', 'ShadCN UI', 'Neon', 'Better Auth'],
         year: '2024',
+        link: 'https://taskflow-sandy-beta.vercel.app/',
         github: 'https://github.com/bipul724/taskflow',
         bullets: [
             'Built a SaaS task-management platform with boards, columns, and tasks using Next.js',
