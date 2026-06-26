@@ -1,13 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const navLinks = [
     { label: 'About', href: '#about' },
     { label: 'Skills', href: '#skills' },
     { label: 'Projects', href: '#projects' },
-    { label: 'Achievements', href: '#achievements' },
     { label: 'Contact', href: '#contact' },
 ];
 
@@ -21,43 +20,77 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Close mobile menu on Escape
+    const handleKeyDown = useCallback((e: KeyboardEvent) => {
+        if (e.key === 'Escape') setMobileOpen(false);
+    }, []);
+
+    useEffect(() => {
+        if (mobileOpen) {
+            document.addEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = '';
+        };
+    }, [mobileOpen, handleKeyDown]);
+
     return (
-        <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
+        <nav className={`navbar${scrolled ? ' scrolled' : ''}`} role="navigation" aria-label="Main navigation">
             <Link href="/" style={{
-                fontSize: '1rem',
+                fontSize: '0.95rem',
                 fontWeight: 600,
-                letterSpacing: '-0.01em',
+                letterSpacing: '-0.02em',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
-                color: 'var(--text-primary)'
+                gap: '9px',
+                color: 'var(--text-primary)',
             }}>
-                Bipul Chamoli
+                <span style={{
+                    width: '31px',
+                    height: '31px',
+                    borderRadius: '9px',
+                    background: 'var(--accent)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    color: 'var(--bg-primary)',
+                    letterSpacing: '0',
+                }}>
+                    BC
+                </span>
+                <span className="nav-name">Bipul Chamoli</span>
             </Link>
 
             {/* Desktop Links */}
-            <div style={{
+            <div className="desktop-nav" style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '24px',
-            }} className="desktop-nav">
+                gap: '35px',
+            }}>
                 {navLinks.map(link => (
                     <Link
                         key={link.label}
                         href={link.href}
-                        style={{
-                            fontSize: '0.85rem',
-                            fontWeight: 400,
-                            color: 'var(--text-secondary)',
-                            transition: 'color var(--transition-fast)',
-                        }}
-                        onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
-                        onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
+                        className="nav-link"
                     >
                         {link.label}
                     </Link>
                 ))}
-                <a href="mailto:bipulchamoli45@gmail.com" className="btn-primary" style={{ padding: '8px 16px', fontSize: '0.8rem', borderRadius: '100px' }}>
+                <a
+                    href="mailto:bipulchamoli45@gmail.com"
+                    className="btn-primary"
+                    style={{
+                        padding: '9px 22px',
+                        fontSize: '0.8rem',
+                        borderRadius: '100px',
+                    }}
+                >
                     Hire Me
                 </a>
             </div>
@@ -71,62 +104,122 @@ export default function Navbar() {
                     background: 'none',
                     border: 'none',
                     cursor: 'pointer',
-                    padding: '4px',
+                    padding: '9px',
                     flexDirection: 'column',
-                    gap: '5px',
+                    gap: '6px',
+                    position: 'relative',
+                    zIndex: 1001,
                 }}
-                aria-label="Toggle menu"
+                aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileOpen}
             >
-                <span style={{ width: '22px', height: '2px', background: 'var(--text-primary)', borderRadius: '2px', transition: 'all 0.3s', transform: mobileOpen ? 'rotate(45deg) translateY(7px)' : 'none' }} />
-                <span style={{ width: '22px', height: '2px', background: 'var(--text-primary)', borderRadius: '2px', transition: 'all 0.3s', opacity: mobileOpen ? 0 : 1 }} />
-                <span style={{ width: '22px', height: '2px', background: 'var(--text-primary)', borderRadius: '2px', transition: 'all 0.3s', transform: mobileOpen ? 'rotate(-45deg) translateY(-7px)' : 'none' }} />
+                <span style={{
+                    width: '22px',
+                    height: '1.5px',
+                    background: 'var(--text-primary)',
+                    borderRadius: '2px',
+                    transition: 'all 0.3s ease',
+                    transform: mobileOpen ? 'rotate(45deg) translateY(7.5px)' : 'none',
+                }} />
+                <span style={{
+                    width: '22px',
+                    height: '1.5px',
+                    background: 'var(--text-primary)',
+                    borderRadius: '2px',
+                    transition: 'all 0.3s ease',
+                    opacity: mobileOpen ? 0 : 1,
+                }} />
+                <span style={{
+                    width: '22px',
+                    height: '1.5px',
+                    background: 'var(--text-primary)',
+                    borderRadius: '2px',
+                    transition: 'all 0.3s ease',
+                    transform: mobileOpen ? 'rotate(-45deg) translateY(-7.5px)' : 'none',
+                }} />
             </button>
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu Overlay */}
             {mobileOpen && (
-                <div style={{
-                    position: 'fixed',
-                    top: '72px',
-                    left: '16px',
-                    right: '16px',
-                    background: 'var(--bg-secondary)',
-                    border: '1px solid var(--border-color)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '20px',
-                    padding: '32px 24px',
-                    zIndex: 999,
-                    borderRadius: 'var(--radius-lg)',
-                    boxShadow: 'var(--shadow-lg)'
-                }}>
-                    {navLinks.map(link => (
-                        <Link
-                            key={link.label}
-                            href={link.href}
-                            onClick={() => setMobileOpen(false)}
+                <>
+                    <div
+                        onClick={() => setMobileOpen(false)}
+                        style={{
+                            position: 'fixed',
+                            inset: 0,
+                            background: 'rgba(0,0,0,0.6)',
+                            zIndex: 998,
+                        }}
+                        aria-hidden="true"
+                    />
+                    <div style={{
+                        position: 'fixed',
+                        top: '84px',
+                        left: '18px',
+                        right: '18px',
+                        background: 'var(--bg-elevated)',
+                        border: '1px solid var(--border-color)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '4px',
+                        padding: '13px',
+                        zIndex: 999,
+                        borderRadius: 'var(--radius-lg)',
+                        boxShadow: 'var(--shadow-lg)',
+                    }}>
+                        {navLinks.map(link => (
+                            <Link
+                                key={link.label}
+                                href={link.href}
+                                onClick={() => setMobileOpen(false)}
+                                style={{
+                                    fontSize: '0.95rem',
+                                    fontWeight: 500,
+                                    color: 'var(--text-secondary)',
+                                    transition: 'all var(--transition-fast)',
+                                    padding: '13px 22px',
+                                    width: '100%',
+                                    textAlign: 'center',
+                                    borderRadius: 'var(--radius-md)',
+                                }}
+                                onMouseEnter={e => {
+                                    e.currentTarget.style.color = 'var(--text-primary)';
+                                    e.currentTarget.style.background = 'var(--accent-subtle)';
+                                }}
+                                onMouseLeave={e => {
+                                    e.currentTarget.style.color = 'var(--text-secondary)';
+                                    e.currentTarget.style.background = 'transparent';
+                                }}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                        <div style={{ width: '100%', height: '1px', background: 'var(--border-color)', margin: '4px 0' }} />
+                        <a
+                            href="mailto:bipulchamoli45@gmail.com"
+                            className="btn-primary"
                             style={{
-                                fontSize: '1rem',
-                                fontWeight: 500,
-                                color: 'var(--text-secondary)',
-                                transition: 'color var(--transition-fast)',
+                                width: '100%',
+                                textAlign: 'center',
+                                justifyContent: 'center',
+                                marginTop: '4px',
+                                borderRadius: 'var(--radius-md)',
                             }}
-                            onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
-                            onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
                         >
-                            {link.label}
-                        </Link>
-                    ))}
-                    <a href="mailto:bipulchamoli45@gmail.com" className="btn-primary" style={{ width: '100%', textAlign: 'center', justifyContent: 'center' }}>
-                        Hire Me
-                    </a>
-                </div>
+                            Hire Me
+                        </a>
+                    </div>
+                </>
             )}
 
             <style>{`
                 @media (max-width: 768px) {
                     .desktop-nav { display: none !important; }
                     .mobile-menu-btn { display: flex !important; }
+                }
+                @media (max-width: 480px) {
+                    .nav-name { display: none; }
                 }
             `}</style>
         </nav>

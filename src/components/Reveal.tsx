@@ -14,6 +14,13 @@ export default function Reveal({ children, delay = 0 }: RevealProps) {
         const el = ref.current;
         if (!el) return;
 
+        // Respect reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            el.classList.add('visible');
+            return;
+        }
+
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
@@ -23,7 +30,7 @@ export default function Reveal({ children, delay = 0 }: RevealProps) {
                     observer.unobserve(el);
                 }
             },
-            { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+            { threshold: 0.08, rootMargin: '0px 0px -60px 0px' }
         );
 
         observer.observe(el);

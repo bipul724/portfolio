@@ -22,6 +22,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
+                <div className="bg-gradient" aria-hidden="true" />
                 <Navbar />
                 {children}
                 <Footer />
