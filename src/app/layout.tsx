@@ -4,12 +4,12 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 export const metadata: Metadata = {
-    title: 'Bipul Chamoli — Full Stack Developer',
-    description: 'Full Stack Developer with hands-on experience in frontend and backend development using React.js, Next.js, Node.js, and REST APIs.',
+    title: 'Bipul Chamoli — Full-stack Software Engineer',
+    description: 'Full-stack Software Engineer specializing in AI-powered applications using JavaScript, TypeScript, React, Next.js, Node.js, Express.js, PostgreSQL, and Prisma.',
     metadataBase: new URL('https://bipulchamoli.dev'),
     openGraph: {
-        title: 'Bipul Chamoli — Full Stack Developer',
-        description: 'Full Stack Developer building scalable web applications with React.js, Next.js, and Node.js.',
+        title: 'Bipul Chamoli — Full-stack Software Engineer',
+        description: 'Full-stack Software Engineer building AI-powered applications with Next.js, TypeScript, and Node.js.',
         type: 'website',
     },
 };

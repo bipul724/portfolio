@@ -4,53 +4,53 @@ import Reveal from '../components/Reveal';
 
 const projects = [
     {
+        title: 'ReachNext',
+        description: 'Next.js, TypeScript, Prisma, PostgreSQL, Groq',
+        tags: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Groq'],
+        year: '2025',
+        link: 'https://reachnext.vercel.app/',
+        github: 'https://github.com/bipul724/ReachNext',
+        bullets: [
+            'Built a multi-agent AI marketing platform using Next.js, Groq, Gemini, and TypeScript with 4 specialized AI agents automating customer segmentation, campaign strategy, content creation, and campaign review',
+            'Engineered a 4-stage multi-agent orchestration pipeline using TypeScript, Prisma, PostgreSQL, and Zod for structured marketing plans with end-to-end schema validation',
+            'Designed an Express-based campaign service with asynchronous webhooks, batched delivery, and real-time analytics following a microservices architecture',
+        ],
+    },
+    {
         title: 'HireNext',
-        description: 'Next.js, Supabase, Vapi, AI',
-        tags: ['Next.js', 'Supabase', 'Vapi', 'AI'],
-        year: '2024',
+        description: 'Next.js, Express.js, Redis, Supabase, WebSockets',
+        tags: ['Next.js', 'Express.js', 'Redis', 'Supabase', 'WebSockets'],
+        year: '2025',
         link: 'https://hire-next-blush.vercel.app/',
         github: 'https://github.com/bipul724/HireNext',
         bullets: [
-            'Developed an AI recruiter platform with voice-based interviews and automated feedback',
-            'Integrated AI-generated interview questions and real-time voice agent using Vapi',
-            'Implemented authentication, interview scheduling, and candidate analytics dashboard',
+            'Built an AI interview platform integrating Vapi voice agents, OpenRouter, and Gemini with real-time collaborative coding, combining 3 AI services to automate technical interviews',
+            'Designed a distributed WebSocket architecture using Redis Pub/Sub for real-time collaborative coding, cursor synchronization, presence tracking, and persistent code sync',
+            'Developed an asynchronous AI feedback pipeline using Supabase, idempotent webhook processing, and event-driven architecture for reliable interview evaluations',
         ],
     },
     {
         title: 'ZenCash',
-        description: 'Next.js, Prisma, PostgreSQL, Inngest, Arcjet, AI',
-        tags: ['Next.js', 'Prisma', 'PostgreSQL', 'Inngest', 'AI'],
-        year: '2024',
+        description: 'Next.js, Prisma, PostgreSQL, Inngest, Arcjet',
+        tags: ['Next.js', 'Prisma', 'PostgreSQL', 'Inngest', 'Arcjet'],
+        year: '2025',
         link: 'https://zen-cash-oevg.vercel.app/',
         github: 'https://github.com/bipul724/ZenCash',
         bullets: [
-            'Developed a full-stack finance tracking platform with authentication, transactions, and analytics',
-            'Automated recurring transactions, budget alerts, and monthly reports using cron jobs',
-            'Integrated AI for receipt scanning and expense insights with secure APIs and rate limiting',
-        ],
-    },
-    {
-        title: 'Taskflow',
-        description: 'Next.js, TypeScript, ShadCN UI, Neon, Better Auth',
-        tags: ['Next.js', 'TypeScript', 'ShadCN UI', 'Neon', 'Better Auth'],
-        year: '2024',
-        link: 'https://taskflow-sandy-beta.vercel.app/',
-        github: 'https://github.com/bipul724/taskflow',
-        bullets: [
-            'Built a SaaS task-management platform with boards, columns, and tasks using Next.js',
-            'Implemented secure authentication and session handling using Better Auth',
-            'Developed Kanban boards with drag-and-drop task reordering and real-time UI updates',
-            'Added search, filters, and free-tier feature limits for a production-ready SaaS experience',
+            'Built a full-stack finance management platform with secure authentication, budgeting, expense tracking, and interactive financial analytics dashboards',
+            'Engineered event-driven background jobs using Inngest to automate recurring transactions, budget alerts, and scheduled monthly financial reports',
+            'Integrated AI-powered receipt processing with Arcjet, secure APIs, rate limiting, and PostgreSQL for automated expense categorization and insights',
         ],
     },
 ];
 
 const skills = {
-    'Languages': ['Java', 'C++', 'JavaScript', 'TypeScript', 'Python (Basic)', 'SQL'],
-    'Frontend': ['React.js', 'Next.js', 'HTML5', 'CSS3', 'Tailwind CSS', 'ShadCN/UI'],
-    'Backend': ['Node.js', 'Express.js', 'RESTful APIs'],
-    'Databases': ['MongoDB', 'MySQL', 'PostgreSQL', 'Supabase', 'NeonDB', 'Prisma'],
-    'Tools & Platforms': ['Clerk', 'Better Auth', 'Git', 'GitHub', 'Vercel', 'AWS (Foundational)', 'Postman'],
+    'Languages': ['Java', 'JavaScript', 'TypeScript', 'SQL'],
+    'Frontend': ['React.js', 'Next.js', 'Tailwind CSS', 'shadcn/ui'],
+    'Backend': ['Node.js', 'Express.js', 'RESTful APIs', 'WebSockets', 'Zod', 'AI/LLM Integration'],
+    'Databases & ORMs': ['MongoDB', 'Redis', 'PostgreSQL', 'Prisma'],
+    'Core CS Concepts': ['Data Structures & Algorithms', 'OOP', 'DBMS', 'Operating Systems', 'Computer Networks'],
+    'DevOps & Tools': ['Docker', 'Nginx', 'Linux', 'GitHub', 'Postman'],
 };
 
 const education = [
@@ -100,13 +100,13 @@ export default function Home() {
                         lineHeight: 1.8,
                         maxWidth: '748px',
                     }}>
-                        I&apos;m a Full Stack Developer currently pursuing my B.Tech in Computer Science at{' '}
+                        I&apos;m a Full-stack Software Engineer specializing in AI-powered applications using{' '}
                         <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>
-                            ABES Engineering College
-                        </span>. I have hands-on experience building scalable full-stack applications
-                        using modern technologies like React.js, Next.js, and Node.js. I&apos;m passionate
-                        about creating efficient, user-friendly web experiences and constantly exploring
-                        new tools and frameworks.
+                            JavaScript, TypeScript, React, Next.js, Node.js, Express.js, PostgreSQL, and Prisma
+                        </span>. Experienced in designing multi-agent AI systems, event-driven architectures,
+                        and real-time distributed applications with structured output validation, idempotent
+                        processing, and provider-agnostic AI integrations. Currently pursuing my B.Tech in
+                        Computer Science at ABES Engineering College.
                     </p>
                 </Reveal>
             </section>

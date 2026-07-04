@@ -102,7 +102,7 @@ export default function Hero() {
                         transform: visible ? 'translateY(0)' : 'translateY(11px)',
                         transition: 'opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s',
                     }}>
-                        I build things for the web.
+                        I build AI-powered applications.
                     </h2>
 
                     <p style={{
@@ -115,10 +115,11 @@ export default function Hero() {
                         transform: visible ? 'translateY(0)' : 'translateY(11px)',
                         transition: 'opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s',
                     }}>
-                        Full Stack Developer specializing in building exceptional digital experiences.
-                        Currently focused on creating accessible, performant applications with{' '}
-                        <span style={{ color: 'var(--accent)', fontWeight: 500 }}>React.js</span>,{' '}
-                        <span style={{ color: 'var(--accent)', fontWeight: 500 }}>Next.js</span>, and{' '}
+                        Full-stack Software Engineer specializing in AI-powered applications.
+                        Experienced in designing multi-agent AI systems, event-driven architectures,
+                        and real-time distributed applications with{' '}
+                        <span style={{ color: 'var(--accent)', fontWeight: 500 }}>Next.js</span>,{' '}
+                        <span style={{ color: 'var(--accent)', fontWeight: 500 }}>TypeScript</span>, and{' '}
                         <span style={{ color: 'var(--accent)', fontWeight: 500 }}>Node.js</span>.
                     </p>
 
