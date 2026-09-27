@@ -2,7 +2,7 @@ import styles from './About.module.css';
 import Reveal from './Reveal';
 import LocalTime from './LocalTime';
 import { ArrowUpRight, CheckIcon, LeetCodeIcon } from './Icons';
-import { certifications, featuredWork, profile, skills } from '../data/content';
+import { certifications, featuredWork, leetcode, profile, skills } from '../data/content';
 
 export default function About() {
     const sagekite = featuredWork[0];
@@ -65,9 +65,28 @@ export default function About() {
                     </p>
                     <div>
                         <p className={styles.stat}>
-                            400<span>+</span>
+                            {leetcode.solved}
+                            <span>+</span>
                         </p>
                         <p className={styles.muted}>DSA problems solved</p>
+                        {/* Bar segments are sized by share of problems solved at each difficulty */}
+                        <div className={styles.difficulty} aria-hidden="true">
+                            {leetcode.breakdown.map(level => (
+                                <span
+                                    key={level.level}
+                                    className={styles[level.level.toLowerCase()]}
+                                    style={{ flexGrow: level.solved }}
+                                />
+                            ))}
+                        </div>
+                        <p className={styles.levels}>
+                            {leetcode.breakdown.map(level => (
+                                <span key={level.level}>
+                                    <i className={styles[level.level.toLowerCase()]} aria-hidden="true" />
+                                    {level.level} {level.solved}
+                                </span>
+                            ))}
+                        </p>
                     </div>
                     <ArrowUpRight className={styles.corner} />
                 </a>

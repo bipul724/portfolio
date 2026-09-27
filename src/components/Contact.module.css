@@ -52,7 +52,8 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-size: clamp(1.35rem, 3.6vw, 2.5rem);
+  /* Scales with the viewport so the address stays on one line down to 320px */
+  font-size: clamp(1.05rem, 5.4vw, 2.5rem);
   font-weight: 500;
   letter-spacing: -0.035em;
   overflow-wrap: anywhere;

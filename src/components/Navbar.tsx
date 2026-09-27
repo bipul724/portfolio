@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useSyncExternalStore, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from 'react';
 import styles from './Navbar.module.css';
 import LocalTime from './LocalTime';
 import { GitHubIcon, LeetCodeIcon } from './Icons';
@@ -19,6 +19,7 @@ export default function Navbar() {
     const scrolled = useSyncExternalStore(subscribeScroll, getScrolled, getServerScrolled);
     const [open, setOpen] = useState(false);
     const [active, setActive] = useState('');
+    const menuButton = useRef<HTMLButtonElement>(null);
 
     // Highlight whichever section is crossing the middle of the viewport.
     useEffect(() => {
@@ -32,17 +33,25 @@ export default function Navbar() {
 
     useEffect(() => {
         if (!open) return;
-        const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key !== 'Escape') return;
+            setOpen(false);
+            menuButton.current?.focus();
+        };
         const desktop = window.matchMedia('(min-width: 861px)');
         const onBreakpoint = () => desktop.matches && setOpen(false);
+        // The page behind the overlay is out of reach for keyboard and screen readers while it's open.
+        const background = [document.getElementById('main'), document.querySelector('body > footer')];
 
         document.addEventListener('keydown', onKey);
         desktop.addEventListener('change', onBreakpoint);
         document.body.style.overflow = 'hidden';
+        background.forEach(el => el?.setAttribute('inert', ''));
         return () => {
             document.removeEventListener('keydown', onKey);
             desktop.removeEventListener('change', onBreakpoint);
             document.body.style.overflow = '';
+            background.forEach(el => el?.removeAttribute('inert'));
         };
     }, [open]);
 
@@ -81,6 +90,7 @@ export default function Navbar() {
                         Let&apos;s talk
                     </a>
                     <button
+                        ref={menuButton}
                         type="button"
                         className={styles.menuButton}
                         aria-expanded={open}

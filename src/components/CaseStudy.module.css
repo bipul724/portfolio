@@ -100,9 +100,12 @@
   background: var(--bg-raised);
 }
 
+/* column-reverse puts the value (<dd>) above its label; flex-end packs both to the top
+   so values line up even when labels wrap to different heights */
 .stats div {
   display: flex;
   flex-direction: column-reverse;
+  justify-content: flex-end;
   gap: 6px;
   padding: 20px;
 }
@@ -216,11 +219,25 @@
 }
 
 @media (max-width: 480px) {
+  /* Too narrow for three columns: one row per stat, value on the left */
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
   .stats div {
-    padding: 16px 14px;
+    flex-direction: row-reverse;
+    align-items: baseline;
+    gap: 14px;
+    padding: 14px 18px;
+  }
+
+  .stats div + div {
+    border-left: 0;
+    border-top: 1px solid var(--line);
   }
 
   .stats dd {
+    min-width: 1.6em;
     font-size: 1.75rem;
   }
 

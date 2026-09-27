@@ -15,10 +15,13 @@
   color: var(--text-3);
 }
 
+/* Padding widens the tap area to 44px; the negative margin keeps the bar's height */
 .top {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  padding-block: 12px;
+  margin-block: -12px;
   color: var(--text-2);
   transition: color 0.2s ease;
 }

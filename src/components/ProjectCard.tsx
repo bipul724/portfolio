@@ -49,11 +49,11 @@ export default function ProjectCard({ project }: { project: Project }) {
 
                 <div className={styles.links}>
                     {live && (
-                        <a href={live} target="_blank" rel="noopener noreferrer" className="link-arrow">
+                        <a href={live} target="_blank" rel="noopener noreferrer" className={`${styles.link} ${styles.live}`}>
                             Live app <ArrowUpRight />
                         </a>
                     )}
-                    <a href={repo} target="_blank" rel="noopener noreferrer" className={styles.repo}>
+                    <a href={repo} target="_blank" rel="noopener noreferrer" className={styles.link}>
                         <GitHubIcon /> Source
                     </a>
                 </div>

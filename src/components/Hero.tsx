@@ -17,7 +17,10 @@ export default function Hero() {
                 <div className={styles.copy}>
                     <p className={`${styles.status} ${styles.rise}`} style={step(0)}>
                         <span className="pulse" aria-hidden="true" />
-                        {profile.status}
+                        <span>
+                            {profile.status.role}
+                            <span className={styles.statusExtra}> · {profile.status.availability}</span>
+                        </span>
                     </p>
 
                     <h1 className={`${styles.title} ${styles.rise}`} style={step(1)}>
@@ -40,7 +43,7 @@ export default function Hero() {
 
                     <div className={`${styles.actions} ${styles.rise}`} style={step(3)}>
                         <a href="#work" className="btn btn-primary">
-                            See selected work <ArrowDown />
+                            See my work <ArrowDown />
                         </a>
                         <CopyEmail email={profile.email} className="btn btn-ghost" />
                     </div>

@@ -108,23 +108,52 @@
 
 .links {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 8px;
   margin-top: auto;
   padding-top: 22px;
-  font-size: 14px;
 }
 
-.repo {
+/* 40px-tall pills: comfortable touch targets */
+.link {
   display: inline-flex;
   align-items: center;
   gap: 7px;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 14px;
   color: var(--text-2);
-  transition: color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
 
-.repo:hover {
+.link svg {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.link:hover {
   color: var(--text);
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.live {
+  color: var(--text);
+}
+
+.live:hover {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+
+.live:hover svg {
+  transform: translate(2px, -2px);
 }
 
 /* Wide slot (full-row card on tablet, large phones): image beside the text */

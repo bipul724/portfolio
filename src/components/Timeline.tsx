@@ -3,6 +3,20 @@ import Reveal from './Reveal';
 import { ArrowUpRight } from './Icons';
 import { timeline } from '../data/content';
 
+// Glue the arrow to the last word so it never wraps onto a line by itself.
+function LinkedOrg({ name }: { name: string }) {
+    const split = name.lastIndexOf(' ') + 1;
+    return (
+        <>
+            {name.slice(0, split)}
+            <span className={styles.nowrap}>
+                {name.slice(split)}
+                <ArrowUpRight />
+            </span>
+        </>
+    );
+}
+
 export default function Timeline() {
     return (
         <ol className={styles.list}>
@@ -18,11 +32,14 @@ export default function Timeline() {
                             <div>
                                 <h3 className={styles.title}>
                                     {entry.title}
-                                    <span className={styles.at}> · </span>
+                                    {/* The no-break space keeps "·" on the title's line when the org wraps */}
+                                    <span className={styles.at} aria-hidden="true">
+                                        {' ·'}
+                                    </span>
+                                    <span className="sr-only"> at</span>{' '}
                                     {entry.url ? (
                                         <a href={entry.url} target="_blank" rel="noopener noreferrer" className={styles.org}>
-                                            {entry.org}
-                                            <ArrowUpRight />
+                                            <LinkedOrg name={entry.org} />
                                         </a>
                                     ) : (
                                         <span className={styles.org}>{entry.org}</span>

@@ -4,6 +4,7 @@ import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Spotlight from '../components/Spotlight';
+import { siteUrl } from '../lib/site';
 
 const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' });
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' });
@@ -13,13 +14,6 @@ const instrumentSerif = Instrument_Serif({
     style: ['normal', 'italic'],
     variable: '--font-instrument-serif',
 });
-
-// Set NEXT_PUBLIC_SITE_URL once a custom domain is live; on Vercel the production URL is used automatically.
-const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL
-        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-        : 'http://localhost:3000');
 
 const title = 'Bipul Chamoli — Full-stack Engineer';
 const description =

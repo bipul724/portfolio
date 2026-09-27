@@ -8,11 +8,34 @@ import Timeline from '../components/Timeline';
 import About from '../components/About';
 import Contact from '../components/Contact';
 import Reveal from '../components/Reveal';
-import { featuredWork, projects } from '../data/content';
+import { featuredWork, marquee, profile, projects, timeline } from '../data/content';
+import { siteUrl } from '../lib/site';
+
+const currentRole = timeline.find(entry => entry.current);
+const college = timeline.find(entry => entry.kind === 'education');
+
+// schema.org Person — helps search engines connect the name to this site and profiles.
+const personJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: profile.name,
+    url: siteUrl,
+    image: `${siteUrl}/bipul.jpg`,
+    jobTitle: profile.role,
+    email: `mailto:${profile.email}`,
+    sameAs: [profile.github, profile.leetcode],
+    worksFor: currentRole && { '@type': 'Organization', name: currentRole.org, url: currentRole.url },
+    alumniOf: college && { '@type': 'CollegeOrUniversity', name: college.org },
+    knowsAbout: marquee,
+};
 
 export default function Home() {
     return (
         <main id="main">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, '\\u003c') }}
+            />
             <Hero />
             <Marquee />
 

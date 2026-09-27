@@ -13,9 +13,20 @@ export const profile = {
     email: 'bipulchamoli45@gmail.com',
     phone: { display: '+91 91491 99508', href: 'tel:+919149199508' },
     github: 'https://github.com/bipul724',
-    leetcode: 'https://leetcode.com/u/Bipul_Chamoli',
+    leetcode: 'https://leetcode.com/u/Bipul_Chamoli/',
     source: 'https://github.com/bipul724/portfolio',
-    status: 'Interning at GHL Scale Up · Open to opportunities',
+    // Shown as "role · availability"; the availability part is dropped on narrow phones.
+    status: { role: 'Interning at GHL Scale Up', availability: 'Open to opportunities' },
+};
+
+// From the LeetCode profile (Sep 2026) — bump these as the count grows. `solved` is shown as "450+".
+export const leetcode = {
+    solved: 450,
+    breakdown: [
+        { level: 'Easy', solved: 226 },
+        { level: 'Medium', solved: 205 },
+        { level: 'Hard', solved: 20 },
+    ],
 };
 
 export const navLinks = [

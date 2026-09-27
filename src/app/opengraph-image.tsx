@@ -28,7 +28,7 @@ export default async function OpengraphImage() {
                 <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 14, fontSize: 24, color: '#a4a4ad' }}>
                         <div style={{ width: 12, height: 12, borderRadius: 6, background: '#3ddc84' }} />
-                        {profile.status}
+                        {`${profile.status.role} · ${profile.status.availability}`}
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column' }}>

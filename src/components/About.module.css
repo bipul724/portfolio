@@ -92,6 +92,56 @@
   color: var(--accent);
 }
 
+/* LeetCode difficulty split — LeetCode's own easy / medium / hard colours */
+.easy {
+  --level: #2cbb8f;
+}
+
+.medium {
+  --level: #f2b53a;
+}
+
+.hard {
+  --level: #ef5b4f;
+}
+
+.difficulty {
+  display: flex;
+  gap: 3px;
+  height: 6px;
+  margin-top: 18px;
+}
+
+.difficulty span {
+  flex-basis: 0;
+  min-width: 4px;
+  border-radius: 999px;
+  background: var(--level);
+}
+
+.levels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-3);
+}
+
+.levels span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.levels i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--level);
+}
+
 .linkCard {
   position: relative;
 }
