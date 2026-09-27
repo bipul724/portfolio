@@ -1,0 +1,268 @@
+.header {
+  position: fixed;
+  top: 12px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding-inline: 12px;
+  pointer-events: none;
+}
+
+.nav {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: var(--frame);
+  height: 60px;
+  margin-inline: auto;
+  padding: 0 10px 0 var(--gutter);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  transition:
+    max-width 0.6s var(--ease-out),
+    padding 0.6s var(--ease-out),
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.scrolled .nav {
+  max-width: 900px;
+  padding-left: 12px;
+  background: rgba(14, 14, 16, 0.72);
+  border-color: var(--line-strong);
+  box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  backdrop-filter: blur(16px) saturate(1.6);
+}
+
+/* Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+  transition:
+    background-color 0.3s ease,
+    transform 0.5s var(--ease-out);
+}
+
+.brand:hover .mark {
+  background: var(--accent);
+  transform: rotate(-8deg);
+}
+
+/* Links */
+.links {
+  display: flex;
+  gap: 2px;
+}
+
+.links a {
+  display: block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  color: var(--text-2);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.links a:hover {
+  color: var(--text);
+}
+
+.links a.active {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.clock {
+  display: inline-flex;
+  gap: 5px;
+  padding-inline: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.25s ease;
+}
+
+.cta:hover {
+  background: var(--accent);
+}
+
+.menuButton {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+}
+
+.menuButton span {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: var(--text);
+  transition:
+    top 0.35s var(--ease-out),
+    transform 0.35s var(--ease-out);
+}
+
+.menuButton span:first-child {
+  top: 14px;
+}
+
+.menuButton span:last-child {
+  top: 22px;
+}
+
+.menuButton[aria-expanded='true'] span {
+  top: 18px;
+}
+
+.menuButton[aria-expanded='true'] span:first-child {
+  transform: rotate(45deg);
+}
+
+.menuButton[aria-expanded='true'] span:last-child {
+  transform: rotate(-45deg);
+}
+
+/* Mobile sheet */
+.sheet {
+  pointer-events: auto;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 104px var(--gutter) 32px;
+  background: var(--bg);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.35s var(--ease-out),
+    visibility 0s linear 0.35s;
+}
+
+.sheetOpen {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.35s var(--ease-out);
+}
+
+.sheetLinks li {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.5s var(--ease-out),
+    transform 0.5s var(--ease-out);
+  transition-delay: calc(var(--i) * 45ms + 60ms);
+}
+
+.sheetOpen .sheetLinks li {
+  opacity: 1;
+  transform: none;
+}
+
+.sheetLinks a {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: clamp(2.1rem, 10vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.sheetNum {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--accent);
+}
+
+.sheetFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.sheetSocials {
+  display: flex;
+  gap: 16px;
+}
+
+@media (max-width: 860px) {
+  .links,
+  .clock {
+    display: none;
+  }
+
+  .menuButton {
+    display: block;
+  }
+
+  .scrolled .nav {
+    max-width: var(--frame);
+  }
+}
+
+@media (max-width: 420px) {
+  .brandName {
+    display: none;
+  }
+}

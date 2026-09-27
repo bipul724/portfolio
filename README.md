@@ -46,7 +46,7 @@ A clean, minimal, and responsive developer portfolio built with **Next.js 16** a
 | **Framework** | [Next.js 16](https://nextjs.org) (App Router)                  |
 | **UI**        | [React 19](https://react.dev)                                  |
 | **Language**  | [TypeScript 5.9](https://www.typescriptlang.org)               |
-| **Styling**   | Vanilla CSS with CSS Variables, Glassmorphism, Inter & JetBrains Mono fonts |
+| **Styling**   | Hand-written CSS — global design tokens + CSS Modules; Geist, Geist Mono & Instrument Serif via `next/font` |
 | **Linting**   | [ESLint](https://eslint.org) with `eslint-config-next`         |
 | **Hosting**   | [Vercel](https://vercel.com)                                    |
 
@@ -54,13 +54,16 @@ A clean, minimal, and responsive developer portfolio built with **Next.js 16** a
 
 ## ✨ Features
 
-- 🎨 **Dark theme** with a refined slate color palette and glassmorphism cards
-- 🔄 **Scroll-reveal animations** — sections fade in smoothly as you scroll
-- 📱 **Fully responsive** — looks great on desktop, tablet, and mobile
-- 🧭 **Floating navbar** — blurs into a pill-shaped nav on scroll
-- 🗂️ **Project showcase** — each card has live demo links, GitHub repos, and bullet-point descriptions
-- 🏆 **Skills, education & achievements** — organized in clean, categorized sections
-- 📬 **Contact section** — one-click email, GitHub, and LeetCode links
+- 🖥️ **Live case studies** — client work (Sage Kite, Home Square Studios) shown in browser frames with full-page screenshots that scroll through the real site on hover
+- 🚀 **"From domain to deploy"** — a terminal-style deploy log showing the GoDaddy → DNS → Vercel pipeline
+- 🧭 **Floating pill navbar** — tightens on scroll, highlights the active section, shows my local IST time, full-screen menu on mobile
+- 🧱 **Bento "About" grid** — bio, what I'm doing now, live local time, LeetCode stats, certifications and toolbox
+- 🗂️ **Experience timeline** — work and education; hovering one entry dims the rest
+- ✨ **Details** — cursor spotlight, glowing card borders, tech-stack marquee, film grain, page rails, scroll reveals
+- 📋 **Copy-to-clipboard email** with screen-reader announcement
+- ♿ **Accessible & responsive** — semantic landmarks, skip link, focus styles, `prefers-reduced-motion` support, mobile → desktop layouts
+
+All content lives in [`src/data/content.ts`](src/data/content.ts) — edit that file to update projects, experience or skills.
 
 ---
 
@@ -96,21 +99,31 @@ Open [http://localhost:3000](http://localhost:3000) in your browser — you're a
 ```
 portfolio/
 ├── public/
-│   └── bipul.jpg              # Profile photo
+│   └── bipul.jpg                # Profile photo
 ├── src/
 │   ├── app/
-│   │   ├── globals.css        # Design tokens, theme & global styles
-│   │   ├── layout.tsx         # Root layout (Navbar + Footer)
-│   │   └── page.tsx           # Main page — all sections
-│   └── components/
-│       ├── Footer.tsx         # Site footer
-│       ├── Hero.tsx           # Hero section with photo & CTA
-│       ├── Navbar.tsx         # Floating navigation bar
-│       ├── ProjectCard.tsx    # Reusable project card component
-│       └── Reveal.tsx         # Scroll-triggered reveal animation
-├── next.config.mjs            # Next.js configuration
-├── tsconfig.json              # TypeScript configuration
-└── package.json               # Dependencies & scripts
+│   │   ├── globals.css          # Design tokens, base styles & shared primitives
+│   │   ├── icon.svg             # Favicon
+│   │   ├── layout.tsx           # Fonts, metadata, Navbar + Footer, backdrop layers
+│   │   └── page.tsx             # Main page — composes all sections
+│   ├── assets/work/             # Screenshots of live projects
+│   ├── data/
+│   │   └── content.ts           # ← All site content (projects, experience, skills…)
+│   └── components/              # Each component has a matching .module.css
+│       ├── Hero.tsx             # Headline, polaroid photo, "live in production" links
+│       ├── Navbar.tsx           # Floating pill nav + mobile menu
+│       ├── Marquee.tsx          # Scrolling tech-stack strip
+│       ├── CaseStudy.tsx        # Client work: header, browser frame, details, deploy log
+│       ├── BrowserFrame.tsx     # Browser chrome with hover-to-scroll screenshot
+│       ├── ProjectCard.tsx      # Side-project card
+│       ├── Timeline.tsx         # Experience & education
+│       ├── About.tsx            # Bento grid
+│       ├── Contact.tsx          # Call to action
+│       ├── Footer.tsx           # Footer with oversized wordmark
+│       └── …                    # Small helpers: Reveal, Spotlight, LocalTime, CopyEmail, Icons
+├── next.config.mjs              # Next.js configuration
+├── tsconfig.json                # TypeScript configuration
+└── package.json                 # Dependencies & scripts
 ```
 
 ---

@@ -1,44 +1,40 @@
 'use client';
 
-import { useEffect, useRef, ReactNode } from 'react';
+import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 
 interface RevealProps {
     children: ReactNode;
     delay?: number;
+    className?: string;
 }
 
-export default function Reveal({ children, delay = 0 }: RevealProps) {
+export default function Reveal({ children, delay = 0, className }: RevealProps) {
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const el = ref.current;
         if (!el) return;
 
-        // Respect reduced motion preference
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReducedMotion) {
-            el.classList.add('visible');
-            return;
-        }
-
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        el.classList.add('visible');
-                    }, delay);
-                    observer.unobserve(el);
+                    el.classList.add('is-visible');
+                    observer.disconnect();
                 }
             },
-            { threshold: 0.08, rootMargin: '0px 0px -60px 0px' }
+            { rootMargin: '0px 0px -10% 0px' }
         );
 
         observer.observe(el);
         return () => observer.disconnect();
-    }, [delay]);
+    }, []);
 
     return (
-        <div ref={ref} className="reveal" style={{ height: '100%' }}>
+        <div
+            ref={ref}
+            className={className ? `reveal ${className}` : 'reveal'}
+            style={{ '--delay': `${delay}ms` } as CSSProperties}
+        >
             {children}
         </div>
     );

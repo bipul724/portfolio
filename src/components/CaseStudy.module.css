@@ -1,0 +1,234 @@
+.study + .study {
+  margin-top: clamp(96px, 12vw, 160px);
+}
+
+/* Header: name on the left, summary + link on the right */
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: end;
+  gap: 24px 64px;
+  margin-bottom: 36px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.index {
+  color: var(--accent);
+}
+
+.name {
+  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+
+.summary {
+  display: grid;
+  justify-items: start;
+  gap: 18px;
+  color: var(--text-2);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+/* Details under the frame */
+.details {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 40px 64px;
+  margin-top: 44px;
+}
+
+.label {
+  margin-bottom: 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.highlights {
+  display: grid;
+  gap: 14px;
+  counter-reset: item;
+}
+
+.highlights li {
+  position: relative;
+  padding-left: 40px;
+  color: var(--text-2);
+  line-height: 1.65;
+  counter-increment: item;
+}
+
+.highlights li::before {
+  content: counter(item, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.aside {
+  display: grid;
+  align-content: start;
+  gap: 32px;
+}
+
+/* Stat tiles */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-raised);
+}
+
+.stats div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 6px;
+  padding: 20px;
+}
+
+.stats div + div {
+  border-left: 1px solid var(--line);
+}
+
+.stats dd {
+  font-size: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.stats dt {
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--text-3);
+}
+
+/* Terminal-style deploy log */
+.log {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #0c0c0e;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+}
+
+.logBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text-3);
+}
+
+.logLive {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--live);
+}
+
+.logLines {
+  display: grid;
+  gap: 9px;
+  padding: 16px;
+}
+
+.logLines li {
+  display: grid;
+  grid-template-columns: 14px 64px minmax(0, 1fr);
+  gap: 10px;
+  line-height: 1.5;
+}
+
+:global(.is-visible) .logLines li {
+  animation: logIn 0.5s var(--ease-out) backwards;
+  animation-delay: calc(var(--line) * 160ms + 300ms);
+}
+
+@keyframes logIn {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+}
+
+.logCheck {
+  color: var(--live);
+}
+
+.logStep {
+  color: var(--accent);
+}
+
+.logDetail {
+  color: var(--text-2);
+}
+
+.logLines li:last-child .logDetail {
+  color: var(--text);
+}
+
+.logLines li:last-child .logDetail::after {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 14px;
+  margin-left: 6px;
+  vertical-align: -2px;
+  background: var(--text-2);
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .head,
+  .details {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats div {
+    padding: 16px 14px;
+  }
+
+  .stats dd {
+    font-size: 1.75rem;
+  }
+
+  .logLines li {
+    grid-template-columns: 14px minmax(0, 1fr);
+  }
+
+  .logDetail {
+    grid-column: 2;
+  }
+}

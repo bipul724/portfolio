@@ -1,0 +1,136 @@
+.list {
+  border-top: 1px solid var(--line);
+}
+
+.item {
+  border-bottom: 1px solid var(--line);
+  transition: opacity 0.35s ease;
+}
+
+/* Hovering one entry quietly dims the rest */
+@media (hover: hover) {
+  .list:hover .item:not(:hover) {
+    opacity: 0.45;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 12px 40px;
+  padding: 32px 0;
+}
+
+.period {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.kind {
+  font-size: 11px;
+  color: var(--text-3);
+  opacity: 0.7;
+}
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 0;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+.at {
+  white-space: pre;
+  color: var(--text-3);
+}
+
+.org {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text);
+}
+
+a.org {
+  transition: color 0.2s ease;
+}
+
+.org svg {
+  width: 15px;
+  height: 15px;
+  color: var(--text-3);
+  transition:
+    transform 0.3s var(--ease-out),
+    color 0.2s ease;
+}
+
+a.org:hover {
+  color: var(--accent);
+}
+
+a.org:hover svg {
+  color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+.current {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 24px;
+  margin-left: 14px;
+  padding: 0 10px;
+  border: 1px solid rgba(61, 220, 132, 0.3);
+  border-radius: 999px;
+  background: rgba(61, 220, 132, 0.07);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--live);
+}
+
+.current :global(.pulse) {
+  width: 6px;
+  height: 6px;
+}
+
+.description {
+  max-width: 640px;
+  margin-top: 10px;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+.tags {
+  margin-top: 18px;
+}
+
+@media (max-width: 700px) {
+  .row {
+    grid-template-columns: 1fr;
+    padding: 28px 0;
+  }
+
+  .period {
+    flex-direction: row;
+    gap: 12px;
+    padding-top: 0;
+  }
+
+  .current {
+    margin-left: 10px;
+  }
+}
