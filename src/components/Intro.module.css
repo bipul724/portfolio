@@ -1,0 +1,198 @@
+/* Hidden unless the inline script in layout.tsx put `intro` on <html> before first paint */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1400;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding: clamp(20px, 3vw, 36px) var(--gutter) clamp(22px, 3.2vw, 40px);
+  overflow: hidden;
+  background: var(--bg);
+  transition: transform 0.9s cubic-bezier(0.62, 0, 0.18, 1);
+}
+
+:global(html.intro) .overlay {
+  display: flex;
+}
+
+/* The curtain: slides up and away, its orange bottom edge sweeping the screen */
+:global(html.intro-lift) .overlay {
+  transform: translateY(-100%);
+}
+
+/* Warm glow rising from the counter corner */
+.overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(900px 520px at 12% 112%, rgba(255, 107, 61, 0.16), transparent 70%);
+}
+
+/* Top row */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tagline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* Deploy log */
+.log {
+  align-self: flex-end;
+  width: min(440px, 100%);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.log li {
+  display: grid;
+  grid-template-columns: 16px 64px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px dashed var(--line-strong);
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.35s var(--ease-out),
+    transform 0.35s var(--ease-out);
+}
+
+.log li[data-state='active'],
+.log li[data-state='done'] {
+  opacity: 1;
+  transform: none;
+}
+
+.status {
+  justify-self: center;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: blink 0.8s steps(2, jump-none) infinite;
+}
+
+.log li[data-state='done'] .status {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  animation: none;
+}
+
+.log li[data-state='done'] .status::before {
+  content: '✓';
+  color: var(--live);
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.step {
+  color: var(--accent);
+}
+
+.detail {
+  overflow: hidden;
+  color: var(--text-2);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Bottom row: giant counter */
+.bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.count {
+  margin-left: -0.05em;
+  font-size: clamp(6.5rem, 26vw, 25rem);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.07em;
+  line-height: 0.76;
+  animation: count-in 0.9s var(--ease-out) backwards;
+}
+
+@keyframes count-in {
+  from {
+    opacity: 0;
+    transform: translateY(24%);
+  }
+}
+
+.skip {
+  padding-bottom: 0.4em;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+/* Progress line — at 100% it becomes the curtain's glowing bottom edge */
+.bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent);
+  box-shadow: 0 0 24px 2px rgba(255, 107, 61, 0.55);
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left;
+}
+
+@media (max-width: 640px) {
+  .tagline,
+  .skip {
+    display: none;
+  }
+
+  .log {
+    align-self: stretch;
+    width: 100%;
+  }
+
+  /* The numerals are the drama — let them fill a phone screen */
+  .count {
+    font-size: 38vw;
+  }
+}

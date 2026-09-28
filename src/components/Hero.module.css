@@ -28,6 +28,12 @@
   animation-delay: calc(var(--i, 0) * 90ms + 120ms);
 }
 
+/* While the intro overlay is up, hold the entrance so it plays as the curtain lifts */
+:global(html.intro-hold) .rise,
+:global(html.intro-hold) .photoWrap {
+  animation-play-state: paused;
+}
+
 @keyframes rise {
   from {
     opacity: 0;

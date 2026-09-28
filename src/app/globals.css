@@ -63,7 +63,13 @@ html {
   color-scheme: dark;
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
+  scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
+}
+
+/* No scrolling underneath the intro overlay (see Intro.tsx) */
+html.intro {
+  overflow: hidden;
 }
 
 body {
