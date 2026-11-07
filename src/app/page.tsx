@@ -6,9 +6,10 @@ import CaseStudy from '../components/CaseStudy';
 import ProjectCard from '../components/ProjectCard';
 import Timeline from '../components/Timeline';
 import About from '../components/About';
+import Achievements from '../components/Achievements';
 import Contact from '../components/Contact';
 import Reveal from '../components/Reveal';
-import { awards, featuredWork, marquee, profile, projects, timeline } from '../data/content';
+import { achievements, completion, featuredWork, marquee, profile, projects, timeline } from '../data/content';
 import { siteUrl } from '../lib/site';
 
 const currentRole = timeline.find(entry => entry.current);
@@ -27,7 +28,7 @@ const personJsonLd = {
     worksFor: currentRole && { '@type': 'Organization', name: currentRole.org, url: currentRole.url },
     alumniOf: college && { '@type': 'CollegeOrUniversity', name: college.org },
     knowsAbout: marquee,
-    award: awards.map(item => item.schema),
+    award: [...achievements.map(item => item.award.schema), completion.schema],
 };
 
 export default function Home() {
@@ -56,11 +57,25 @@ export default function Home() {
                 </div>
             </section>
 
+            <section id="achievements" className="section" aria-labelledby="achievements-title">
+                <div className="container">
+                    <SectionHeading
+                        id="achievements-title"
+                        index="02"
+                        label="Achievements"
+                        title="Two prize wins"
+                        accent="at Hacktoberfest 2026."
+                        intro="Two of my projects won partner prize categories in DEV × MLH’s Hacktoberfest 2026 challenges, and I completed the event as a Completionist."
+                    />
+                    <Achievements />
+                </div>
+            </section>
+
             <section id="projects" className="section" aria-labelledby="projects-title">
                 <div className="container">
                     <SectionHeading
                         id="projects-title"
-                        index="02"
+                        index="03"
                         label="Projects"
                         title="AI products,"
                         accent="built end to end."
@@ -80,7 +95,7 @@ export default function Home() {
                 <div className="container">
                     <SectionHeading
                         id="experience-title"
-                        index="03"
+                        index="04"
                         label="Experience"
                         title="Where I’ve been"
                         accent="learning & shipping."
@@ -93,7 +108,7 @@ export default function Home() {
                 <div className="container">
                     <SectionHeading
                         id="about-title"
-                        index="04"
+                        index="05"
                         label="About"
                         title="The person"
                         accent="behind the commits."

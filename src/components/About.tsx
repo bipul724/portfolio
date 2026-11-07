@@ -1,9 +1,8 @@
-import Image from 'next/image';
 import styles from './About.module.css';
 import Reveal from './Reveal';
 import LocalTime from './LocalTime';
 import { ArrowUpRight, CheckIcon, LeetCodeIcon } from './Icons';
-import { awards, certifications, featuredWork, leetcode, profile, skills } from '../data/content';
+import { certifications, featuredWork, leetcode, profile, skills } from '../data/content';
 
 export default function About() {
     const sagekite = featuredWork[0];
@@ -101,38 +100,6 @@ export default function About() {
                             <li key={cert}>
                                 <CheckIcon />
                                 {cert}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </Reveal>
-
-            {/* Full-width row, so the bento stays a complete grid at every breakpoint */}
-            <Reveal className={`${styles.cell} ${styles.recognition}`}>
-                <div className={`${styles.card} spot`}>
-                    <p className={styles.label}>Recognition</p>
-                    <ul className={styles.awards}>
-                        {awards.map(award => (
-                            <li key={award.title}>
-                                <a
-                                    href={award.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.award}
-                                    aria-label={`${award.kind}: ${award.title}, ${award.detail} — ${award.linkText} (opens in a new tab)`}
-                                >
-                                    <span className={styles.badge}>
-                                        <Image src={award.badge} alt="" height={48} />
-                                    </span>
-                                    <span className={styles.awardText}>
-                                        <span className={styles.awardKind}>{award.kind}</span>
-                                        <span className={styles.awardTitle}>{award.title}</span>
-                                        <span className={styles.awardDetail}>{award.detail}</span>
-                                        <span className={`link-arrow ${styles.awardLink}`}>
-                                            {award.linkText} <ArrowUpRight />
-                                        </span>
-                                    </span>
-                                </a>
                             </li>
                         ))}
                     </ul>

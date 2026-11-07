@@ -1,0 +1,144 @@
+.list {
+  display: grid;
+  gap: 16px;
+}
+
+/* Cards read their own width, like the Projects grid (ProjectCard switches to a row layout when wide) */
+.cell {
+  min-width: 0;
+  container-type: inline-size;
+}
+
+/* ---------- award header (inside ProjectCard's header slot) ---------- */
+.award {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 36px;
+}
+
+.badge {
+  flex: none;
+  width: 84px;
+  height: 84px;
+}
+
+.awardText {
+  min-width: 0;
+}
+
+/* Accent pill, as used for the "Winner" label on the project cards before */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--accent-line);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.title {
+  margin-top: 10px;
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.event {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.announced {
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+/* ---------- completion row: same card surface, smaller and quieter ---------- */
+.completion {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  transition: border-color 0.3s ease;
+}
+
+.completion:hover {
+  border-color: var(--line-strong);
+}
+
+.completionBadge {
+  flex: none;
+  width: auto;
+  height: 52px;
+}
+
+.completionText {
+  flex: 1;
+  min-width: 0;
+}
+
+.completionKind {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.completionTitle {
+  margin-top: 4px;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.completionDetail {
+  margin-top: 2px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+
+.completionLink {
+  flex: none;
+  font-size: 14px;
+}
+
+/* Narrow cards: badge above the text, link under it */
+@container (max-width: 560px) {
+  .award {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px;
+  }
+
+  .badge {
+    width: 72px;
+    height: 72px;
+  }
+
+  .completion {
+    flex-wrap: wrap;
+    padding: 20px 24px;
+  }
+
+  .completionLink {
+    flex-basis: 100%;
+    padding-left: 72px;
+  }
+}

@@ -39,6 +39,7 @@ export const leetcode = {
 
 export const navLinks = [
     { label: 'Work', href: '#work' },
+    { label: 'Achievements', href: '#achievements' },
     { label: 'Projects', href: '#projects' },
     { label: 'Experience', href: '#experience' },
     { label: 'About', href: '#about' },
@@ -127,11 +128,9 @@ export interface Project {
     /** Describes the screenshot. Only used where the image is exposed to assistive tech;
         the card thumbnail is decorative (alt=""), so it isn't rendered there. */
     imageAlt?: string;
-    /** Prize won by this project, shown as a "Winner" line under the card's tagline. */
-    award?: { title: string; event: string; url: string };
 }
 
-// Hacktoberfest 2026 (DEV × MLH) winners announcements, shared by the project cards and `awards`.
+// Hacktoberfest 2026 (DEV × MLH) winners announcements, used by `achievements`.
 const sentryWinnersPost =
     'https://dev.to/devteam/congrats-to-the-hacktoberfest-open-source-ai-challenge-week-2-side-hustle-winners-2i33';
 const mastraWinnersPost = 'https://dev.to/devteam/congrats-to-the-hacktoberfest-weekend-challenge-build-for-a-friend-winners-pgc';
@@ -154,28 +153,6 @@ export const projects: Project[] = [
         repo: 'https://github.com/bipul724/InfraMind',
         image: inframindShot,
         imageAlt: 'InfraMind landing page',
-    },
-    {
-        name: 'ParchiMatch Lite',
-        kicker: 'Offline order matching for wholesalers',
-        summary:
-            'Turns messy Hinglish and Devanagari WhatsApp orders into checked billing rows matched to a shop’s own catalogue, running offline with a local Gemma model and asking one question when unsure.',
-        highlights: [
-            'Code reads every quantity, unit and price; the model only picks the product, and 16 safety rules check each pick',
-            'Hybrid fuzzy + model matching: 88.2% of lines handled without review and 0 wrong rows auto-accepted on a locked synthetic test set',
-            'Zero-dependency TypeScript on Node 24, with CI that fails if the locked test set changes',
-        ],
-        stack: ['TypeScript', 'Node.js', 'Ollama', 'Gemma', 'GitHub Actions'],
-        year: '2026',
-        live: 'https://bipul724.github.io/parchimatch/',
-        liveLabel: 'Project site',
-        demoVideo: 'https://youtu.be/lsl2cNpkY6U',
-        article:
-            'https://dev.to/bipul_chamoli_09b5f0cc719/red-label-adha-kg-2-box-an-offline-whatsapp-order-reader-for-indian-shops-that-asks-before-it-i96',
-        repo: 'https://github.com/bipul724/parchimatch',
-        image: parchimatchShot,
-        imageAlt: 'ParchiMatch Lite: a messy order line matched to a checked billing row',
-        award: { title: 'Best Use of Sentry Agent Tracing', event: 'Hacktoberfest 2026', url: sentryWinnersPost },
     },
     {
         name: 'Availazy',
@@ -267,27 +244,6 @@ export const projects: Project[] = [
         repo: 'https://github.com/bipul724/ZenCash',
         image: zencashShot,
     },
-    {
-        name: 'Prep Buddy',
-        kicker: 'Offline mock-interview coach',
-        summary:
-            'An offline mock-interview coach for campus placements that asks questions from a 56-question bank, grades typed answers with a local Gemma model, and targets weak topics using vector search.',
-        highlights: [
-            'Mastra agents for interviewer, evaluator and coach roles, with Zod-validated structured feedback',
-            'EmbeddingGemma embeddings and pgvector distance queries pick the next question closest to the user’s gaps',
-            'Runs entirely on localhost through Ollama: no API keys or cloud model calls',
-        ],
-        stack: ['Next.js', 'TypeScript', 'Mastra', 'pgvector', 'Ollama'],
-        year: '2026',
-        // Local-only app: no hosted demo, so the video is the only demo link.
-        demoVideo: 'https://youtu.be/TgRr7m_U_FE',
-        article:
-            'https://dev.to/bipul_chamoli_09b5f0cc719/prep-buddy-an-ai-interview-coach-for-my-classmate-that-runs-on-his-laptop-with-the-wi-fi-off-426b',
-        repo: 'https://github.com/bipul724/prep-buddy',
-        image: prepbuddyShot,
-        imageAlt: 'Prep Buddy landing page',
-        award: { title: 'Best Use of Mastra', event: 'Hacktoberfest 2026', url: mastraWinnersPost },
-    },
 ];
 
 export interface TimelineEntry {
@@ -356,44 +312,93 @@ export const marquee = [
 
 export const certifications = ['Cisco Networking Academy', 'Amazon Web Services (AWS)'];
 
-export interface Award {
-    kind: string;
-    title: string;
-    detail: string;
-    url: string;
-    linkText: string;
-    badge: StaticImageData;
-    /** Plain-text name for the Person JSON-LD `award` list. */
-    schema: string;
+export interface Achievement {
+    award: {
+        title: string;
+        /** Challenge, round and organisers, shown under the award title. */
+        event: string;
+        announced: string;
+        url: string;
+        badge: StaticImageData;
+        /** Plain-text name for the Person JSON-LD `award` list. */
+        schema: string;
+    };
+    /** The winning project, with everything a project card shows. */
+    project: Project;
 }
 
-// "Recognition" cell in About. Badges are DEV's official images (decorative next to the text).
-export const awards: Award[] = [
+// Prize-category wins, shown in the Achievements section. Badges are DEV's official images.
+export const achievements: Achievement[] = [
     {
-        kind: 'Winner',
-        title: 'Best Use of Sentry Agent Tracing',
-        detail: 'ParchiMatch Lite · Hacktoberfest 2026',
-        url: sentryWinnersPost,
-        linkText: 'Winners announcement',
-        badge: sentryBadge,
-        schema: 'Best Use of Sentry Agent Tracing — Hacktoberfest 2026 Open-Source AI Challenge (DEV × MLH)',
+        award: {
+            title: 'Best Use of Sentry Agent Tracing',
+            event: 'Hacktoberfest 2026 Open-Source AI Challenge · Week 2: Side Hustle · DEV × MLH',
+            announced: '23 Oct 2026',
+            url: sentryWinnersPost,
+            badge: sentryBadge,
+            schema: 'Best Use of Sentry Agent Tracing — Hacktoberfest 2026 Open-Source AI Challenge (DEV × MLH)',
+        },
+        project: {
+            name: 'ParchiMatch Lite',
+            kicker: 'Offline order matching for wholesalers',
+            summary:
+                'Turns messy Hinglish and Devanagari WhatsApp orders into checked billing rows matched to a shop’s own catalogue, running offline with a local Gemma model and asking one question when unsure.',
+            highlights: [
+                'Code reads every quantity, unit and price; the model only picks the product, and 16 safety rules check each pick',
+                'Hybrid fuzzy + model matching: 88.2% of lines handled without review and 0 wrong rows auto-accepted on a locked synthetic test set',
+                'Zero-dependency TypeScript on Node 24, with CI that fails if the locked test set changes',
+            ],
+            stack: ['TypeScript', 'Node.js', 'Ollama', 'Gemma', 'GitHub Actions'],
+            year: '2026',
+            live: 'https://bipul724.github.io/parchimatch/',
+            liveLabel: 'Project site',
+            demoVideo: 'https://youtu.be/lsl2cNpkY6U',
+            article:
+                'https://dev.to/bipul_chamoli_09b5f0cc719/red-label-adha-kg-2-box-an-offline-whatsapp-order-reader-for-indian-shops-that-asks-before-it-i96',
+            repo: 'https://github.com/bipul724/parchimatch',
+            image: parchimatchShot,
+            imageAlt: 'ParchiMatch Lite: a messy order line matched to a checked billing row',
+        },
     },
     {
-        kind: 'Winner',
-        title: 'Best Use of Mastra',
-        detail: 'Prep Buddy · Hacktoberfest 2026',
-        url: mastraWinnersPost,
-        linkText: 'Winners announcement',
-        badge: mastraBadge,
-        schema: 'Best Use of Mastra — Hacktoberfest 2026 Weekend Challenge (DEV × MLH)',
-    },
-    {
-        kind: 'Completed',
-        title: 'Hacktoberfest 2026 Completionist',
-        detail: 'Oct 2026',
-        url: '/awards/hacktoberfest-2026-certificate.png',
-        linkText: 'View certificate',
-        badge: completionistBadge,
-        schema: 'Hacktoberfest 2026 Completionist',
+        award: {
+            title: 'Best Use of Mastra',
+            event: 'Hacktoberfest 2026 Weekend Challenge · Build for a Friend · DEV × MLH',
+            announced: '9 Oct 2026',
+            url: mastraWinnersPost,
+            badge: mastraBadge,
+            schema: 'Best Use of Mastra — Hacktoberfest 2026 Weekend Challenge (DEV × MLH)',
+        },
+        project: {
+            name: 'Prep Buddy',
+            kicker: 'Offline mock-interview coach',
+            summary:
+                'An offline mock-interview coach for campus placements that asks questions from a 56-question bank, grades typed answers with a local Gemma model, and targets weak topics using vector search.',
+            highlights: [
+                'Mastra agents for interviewer, evaluator and coach roles, with Zod-validated structured feedback',
+                'EmbeddingGemma embeddings and pgvector distance queries pick the next question closest to the user’s gaps',
+                'Runs entirely on localhost through Ollama: no API keys or cloud model calls',
+            ],
+            stack: ['Next.js', 'TypeScript', 'Mastra', 'pgvector', 'Ollama'],
+            year: '2026',
+            // Local-only app: no hosted demo, so the video is the only demo link.
+            demoVideo: 'https://youtu.be/TgRr7m_U_FE',
+            article:
+                'https://dev.to/bipul_chamoli_09b5f0cc719/prep-buddy-an-ai-interview-coach-for-my-classmate-that-runs-on-his-laptop-with-the-wi-fi-off-426b',
+            repo: 'https://github.com/bipul724/prep-buddy',
+            image: prepbuddyShot,
+            imageAlt: 'Prep Buddy landing page',
+        },
     },
 ];
+
+// Shown as a smaller row under the two wins.
+export const completion = {
+    title: 'Hacktoberfest 2026 Completionist',
+    date: '30 Oct 2026',
+    detail: 'Certificate of completion · Powered by MLH × DEV · Presenting partner DigitalOcean',
+    url: '/awards/hacktoberfest-2026-certificate.png',
+    linkText: 'View certificate',
+    badge: completionistBadge,
+    schema: 'Hacktoberfest 2026 Completionist',
+};

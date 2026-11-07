@@ -10,7 +10,7 @@ export default function Contact() {
             <div className="container">
                 <Reveal>
                     <p className="eyebrow">
-                        <span className="eyebrow-num">05</span>
+                        <span className="eyebrow-num">06</span>
                         Contact
                     </p>
                     <h2 id="contact-title" className={styles.title}>
