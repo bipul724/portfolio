@@ -8,7 +8,7 @@ import Timeline from '../components/Timeline';
 import About from '../components/About';
 import Contact from '../components/Contact';
 import Reveal from '../components/Reveal';
-import { featuredWork, marquee, profile, projects, timeline } from '../data/content';
+import { awards, featuredWork, marquee, profile, projects, timeline } from '../data/content';
 import { siteUrl } from '../lib/site';
 
 const currentRole = timeline.find(entry => entry.current);
@@ -27,6 +27,7 @@ const personJsonLd = {
     worksFor: currentRole && { '@type': 'Organization', name: currentRole.org, url: currentRole.url },
     alumniOf: college && { '@type': 'CollegeOrUniversity', name: college.org },
     knowsAbout: marquee,
+    award: awards.map(item => item.schema),
 };
 
 export default function Home() {

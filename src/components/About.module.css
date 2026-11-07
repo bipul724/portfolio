@@ -182,6 +182,77 @@
   color: var(--live);
 }
 
+/* Recognition: a full row at every column count (4, 2 and 1) */
+.recognition {
+  grid-column: 1 / -1;
+}
+
+.awards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px 32px;
+}
+
+.award {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.badge {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+}
+
+.badge img {
+  width: auto;
+  height: 48px;
+}
+
+.awardText {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.awardKind {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.awardTitle {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.awardDetail {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+
+.awardLink {
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.award:hover .awardLink {
+  color: var(--accent);
+}
+
+.award:hover .awardLink svg {
+  transform: translate(2px, -2px);
+}
+
 .skills {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

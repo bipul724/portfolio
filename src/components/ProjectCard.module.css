@@ -43,6 +43,56 @@
   padding: 24px 24px 22px;
 }
 
+/* Prize line under the kicker (only on cards with an `award`) */
+.award {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: flex-start;
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 22px;
+  color: var(--text-2);
+  transition: color 0.2s ease;
+}
+
+.awardText {
+  min-width: 0;
+}
+
+.awardKind {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--accent-line);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.award svg {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 2px;
+  vertical-align: -2px;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.award:hover {
+  color: var(--text);
+}
+
+.award:hover svg {
+  transform: translate(2px, -2px);
+}
+
 .head {
   display: flex;
   align-items: baseline;

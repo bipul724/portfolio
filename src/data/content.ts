@@ -9,6 +9,9 @@ import parchimatchShot from '@/assets/work/parchimatch.jpg';
 import availazyShot from '@/assets/work/availazy.jpg';
 import ghostcacheShot from '@/assets/work/ghostcache.jpg';
 import prepbuddyShot from '@/assets/work/prepbuddy.jpg';
+import sentryBadge from '@/assets/awards/badge-sentry.png';
+import mastraBadge from '@/assets/awards/badge-mastra.png';
+import completionistBadge from '@/assets/awards/badge-completionist.png';
 
 // Everything on the site reads from this file — edit content here, not in components.
 
@@ -124,7 +127,14 @@ export interface Project {
     /** Describes the screenshot. Only used where the image is exposed to assistive tech;
         the card thumbnail is decorative (alt=""), so it isn't rendered there. */
     imageAlt?: string;
+    /** Prize won by this project, shown as a "Winner" line under the card's tagline. */
+    award?: { title: string; event: string; url: string };
 }
+
+// Hacktoberfest 2026 (DEV × MLH) winners announcements, shared by the project cards and `awards`.
+const sentryWinnersPost =
+    'https://dev.to/devteam/congrats-to-the-hacktoberfest-open-source-ai-challenge-week-2-side-hustle-winners-2i33';
+const mastraWinnersPost = 'https://dev.to/devteam/congrats-to-the-hacktoberfest-weekend-challenge-build-for-a-friend-winners-pgc';
 
 export const projects: Project[] = [
     {
@@ -165,6 +175,7 @@ export const projects: Project[] = [
         repo: 'https://github.com/bipul724/parchimatch',
         image: parchimatchShot,
         imageAlt: 'ParchiMatch Lite: a messy order line matched to a checked billing row',
+        award: { title: 'Best Use of Sentry Agent Tracing', event: 'Hacktoberfest 2026', url: sentryWinnersPost },
     },
     {
         name: 'Availazy',
@@ -275,6 +286,7 @@ export const projects: Project[] = [
         repo: 'https://github.com/bipul724/prep-buddy',
         image: prepbuddyShot,
         imageAlt: 'Prep Buddy landing page',
+        award: { title: 'Best Use of Mastra', event: 'Hacktoberfest 2026', url: mastraWinnersPost },
     },
 ];
 
@@ -343,3 +355,45 @@ export const marquee = [
 ];
 
 export const certifications = ['Cisco Networking Academy', 'Amazon Web Services (AWS)'];
+
+export interface Award {
+    kind: string;
+    title: string;
+    detail: string;
+    url: string;
+    linkText: string;
+    badge: StaticImageData;
+    /** Plain-text name for the Person JSON-LD `award` list. */
+    schema: string;
+}
+
+// "Recognition" cell in About. Badges are DEV's official images (decorative next to the text).
+export const awards: Award[] = [
+    {
+        kind: 'Winner',
+        title: 'Best Use of Sentry Agent Tracing',
+        detail: 'ParchiMatch Lite · Hacktoberfest 2026',
+        url: sentryWinnersPost,
+        linkText: 'Winners announcement',
+        badge: sentryBadge,
+        schema: 'Best Use of Sentry Agent Tracing — Hacktoberfest 2026 Open-Source AI Challenge (DEV × MLH)',
+    },
+    {
+        kind: 'Winner',
+        title: 'Best Use of Mastra',
+        detail: 'Prep Buddy · Hacktoberfest 2026',
+        url: mastraWinnersPost,
+        linkText: 'Winners announcement',
+        badge: mastraBadge,
+        schema: 'Best Use of Mastra — Hacktoberfest 2026 Weekend Challenge (DEV × MLH)',
+    },
+    {
+        kind: 'Completed',
+        title: 'Hacktoberfest 2026 Completionist',
+        detail: 'Oct 2026',
+        url: '/awards/hacktoberfest-2026-certificate.png',
+        linkText: 'View certificate',
+        badge: completionistBadge,
+        schema: 'Hacktoberfest 2026 Completionist',
+    },
+];

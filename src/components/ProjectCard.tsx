@@ -4,7 +4,7 @@ import { ArrowUpRight, GitHubIcon } from './Icons';
 import type { Project } from '../data/content';
 
 export default function ProjectCard({ project }: { project: Project }) {
-    const { name, kicker, summary, highlights, stack, year, live, liveLabel = 'Live app', demoVideo, article, repo, image } =
+    const { name, kicker, summary, highlights, stack, year, live, liveLabel = 'Live app', demoVideo, article, repo, image, award } =
         project;
 
     return (
@@ -33,6 +33,21 @@ export default function ProjectCard({ project }: { project: Project }) {
                     <span className={styles.year}>{year}</span>
                 </header>
                 <p className={styles.kicker}>{kicker}</p>
+                {award && (
+                    // The label starts with the visible text, so voice users can say what they see
+                    <a
+                        href={award.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.award}
+                        aria-label={`Winner, ${award.title}, ${award.event} — ${name} winners announcement (opens in a new tab)`}
+                    >
+                        <span className={styles.awardKind}>Winner</span>
+                        <span className={styles.awardText}>
+                            {award.title} · {award.event} <ArrowUpRight />
+                        </span>
+                    </a>
+                )}
                 <p className={styles.summary}>{summary}</p>
 
                 <ul className={styles.highlights}>
