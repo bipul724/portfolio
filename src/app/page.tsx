@@ -47,7 +47,7 @@ export default function Home() {
                         label="Selected work"
                         title="Shipped to production,"
                         accent="for real clients."
-                        intro="Two live websites, each built solo — from an empty repo to a real domain, with the DNS and deployment handled end to end."
+                        intro="Two live websites, each built solo — one taken over from a starter homepage, the other taken from an empty repo to a real domain, DNS and deployment included."
                     />
                     {featuredWork.map((work, i) => (
                         <CaseStudy key={work.domain} work={work} index={i} />

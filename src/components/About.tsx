@@ -36,7 +36,7 @@ export default function About() {
                     </p>
                     <div>
                         <p className={styles.lead}>Web Developer Intern at GHL Scale Up</p>
-                        <p className={styles.muted}>Most recently shipped {sagekite.domain} — solo, from scratch.</p>
+                        <p className={styles.muted}>Most recently built {sagekite.domain} — solo, from a starter homepage.</p>
                     </div>
                 </div>
             </Reveal>

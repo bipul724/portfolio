@@ -63,19 +63,20 @@ export const featuredWork: CaseStudy[] = [
         context: 'Internship · GHL Scale Up',
         period: '2026',
         summary:
-            'Marketing site for a business growth consultancy serving SMEs in the US, Canada, Europe, Australia and New Zealand. Built from an empty repo to a live domain — on my own.',
+            'Website for a business growth consultancy that sets up and runs CRM, marketing and automation for SMEs in the US, Canada, Europe, Australia and New Zealand. I took it over from a starter homepage and designed and built the rest on my own.',
         highlights: [
-            'Built every page from scratch — home, about, six platform pages, blog and legal — in hand-written CSS with scroll-triggered reveals',
-            'UI illustrations coded in HTML/CSS, not exported as images: a pipeline dashboard, system diagrams and an 18-question FAQ accordion',
-            'SEO foundations baked in: JSON-LD structured data (Organization + FAQPage) and an XML sitemap',
-            'Deployed and hosted on Vercel',
+            'Built the service, industry and 14 CRM platform pages and 12 case studies, all statically generated with Next.js and TypeScript',
+            'Designed the layouts in plain CSS from shared brand tokens, with visuals coded instead of exported: a pipeline dashboard, a system diagram, an 18-question FAQ accordion and an SVG cover for every case study',
+            'Built a password-protected blog studio on Sanity for the SEO team: rich-text editing, pasting from Word and Google Docs, byte-checked image uploads, and posts live within 60 seconds without a redeploy',
+            'Added structured data to every page (Organization, Service, FAQPage and Article JSON-LD), with canonical URLs, meta descriptions and an auto-updating XML sitemap',
+            'Wired lead capture into GoHighLevel: an enquiry form posting to a GHL webhook and an embedded discovery-call calendar, with GA4 kept off the private studio',
         ],
         stats: [
-            { value: '12', label: 'pages in the sitemap' },
-            { value: '18', label: 'FAQ answers with schema' },
-            { value: '1', label: 'developer — me' },
+            { value: '64', label: 'URLs in the live sitemap' },
+            { value: '14', label: 'CRM platform pages' },
+            { value: '44', label: 'pages with FAQ schema' },
         ],
-        stack: ['Next.js', 'React', 'CSS', 'JSON-LD', 'Vercel'],
+        stack: ['Next.js', 'React', 'TypeScript', 'CSS', 'Sanity', 'JSON-LD', 'GoHighLevel', 'Vercel'],
         shot: sagekiteShot,
     },
     {
@@ -295,7 +296,7 @@ export const timeline: TimelineEntry[] = [
         org: 'GHL Scale Up',
         url: 'https://www.ghlscaleup.com',
         description:
-            'GoHighLevel agency building CRM, automation and web systems for agencies and service businesses. I built and shipped sagekite.com from scratch, solo.',
+            'GoHighLevel agency building CRM, automation and web systems for agencies and service businesses. I designed and built sagekite.com solo, taking it over from a starter homepage.',
         tags: ['Next.js', 'React', 'CSS', 'SEO', 'Vercel'],
         kind: 'work',
         current: true,

@@ -30,11 +30,11 @@ export default function Hero() {
 
                     <p className={`${styles.lede} ${styles.rise}`} style={step(2)}>
                         Full-stack engineer working in Next.js, TypeScript and Node. I&apos;m interning at GHL
-                        Scale Up, where I built{' '}
+                        Scale Up, where I designed and built{' '}
                         <a href={sagekite.url} target="_blank" rel="noopener noreferrer">
                             {sagekite.domain}
                         </a>{' '}
-                        from scratch — and I freelance, most recently{' '}
+                        on top of a starter homepage — and I freelance, most recently{' '}
                         <a href={homesquare.url} target="_blank" rel="noopener noreferrer">
                             {homesquare.domain}
                         </a>
