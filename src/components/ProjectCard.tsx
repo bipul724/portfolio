@@ -4,13 +4,15 @@ import { ArrowUpRight, GitHubIcon } from './Icons';
 import type { Project } from '../data/content';
 
 export default function ProjectCard({ project }: { project: Project }) {
-    const { name, kicker, summary, highlights, stack, year, live, repo, image } = project;
+    const { name, kicker, summary, highlights, stack, year, live, liveLabel = 'Live app', demoVideo, article, repo, image } =
+        project;
 
     return (
         <article className={`${styles.card} spot`}>
-            {/* Decorative duplicate of the "Live" link below, so it's hidden from assistive tech */}
+            {/* Decorative duplicate of the first link below, so it's hidden from assistive tech.
+                That's also why the image keeps alt="" rather than `project.imageAlt`. */}
             <a
-                href={live ?? repo}
+                href={live ?? demoVideo ?? repo}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.thumb}
@@ -47,13 +49,48 @@ export default function ProjectCard({ project }: { project: Project }) {
                     ))}
                 </ul>
 
+                {/* aria-labels name the project, since "Live app" / "Source" repeat on every card */}
                 <div className={styles.links}>
                     {live && (
-                        <a href={live} target="_blank" rel="noopener noreferrer" className={`${styles.link} ${styles.live}`}>
-                            Live app <ArrowUpRight />
+                        <a
+                            href={live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`${styles.link} ${styles.live}`}
+                            aria-label={`${name} ${liveLabel.toLowerCase()} (opens in a new tab)`}
+                        >
+                            {liveLabel} <ArrowUpRight />
                         </a>
                     )}
-                    <a href={repo} target="_blank" rel="noopener noreferrer" className={styles.link}>
+                    {demoVideo && (
+                        <a
+                            href={demoVideo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.link}
+                            aria-label={`${name} demo video on YouTube (opens in a new tab)`}
+                        >
+                            Demo video <ArrowUpRight />
+                        </a>
+                    )}
+                    {article && (
+                        <a
+                            href={article}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.link}
+                            aria-label={`${name} article on DEV (opens in a new tab)`}
+                        >
+                            Read article <ArrowUpRight />
+                        </a>
+                    )}
+                    <a
+                        href={repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.link}
+                        aria-label={`${name} source on GitHub (opens in a new tab)`}
+                    >
                         <GitHubIcon /> Source
                     </a>
                 </div>

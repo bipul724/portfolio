@@ -63,11 +63,11 @@ export default function Home() {
                         label="Projects"
                         title="AI products,"
                         accent="built end to end."
-                        intro="Full-stack side projects where I go after the hard parts — multi-agent orchestration, real-time collaboration and event-driven backends."
+                        intro="Full-stack and local-first AI projects where I go after the hard parts — multi-agent pipelines, offline models with checked output and event-driven backends."
                     />
                     <div className={styles.projectGrid}>
                         {projects.map((project, i) => (
-                            <Reveal key={project.name} delay={i * 90} className={styles.projectCell}>
+                            <Reveal key={project.name} delay={(i % 3) * 90} className={styles.projectCell}>
                                 <ProjectCard project={project} />
                             </Reveal>
                         ))}

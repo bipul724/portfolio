@@ -4,6 +4,11 @@ import homesquareShot from '@/assets/work/homesquare-full.jpg';
 import reachnextShot from '@/assets/work/reachnext.jpg';
 import hirenextShot from '@/assets/work/hirenext.jpg';
 import zencashShot from '@/assets/work/zencash.jpg';
+import inframindShot from '@/assets/work/inframind.jpg';
+import parchimatchShot from '@/assets/work/parchimatch.jpg';
+import availazyShot from '@/assets/work/availazy.jpg';
+import ghostcacheShot from '@/assets/work/ghostcache.jpg';
+import prepbuddyShot from '@/assets/work/prepbuddy.jpg';
 
 // Everything on the site reads from this file — edit content here, not in components.
 
@@ -107,11 +112,101 @@ export interface Project {
     stack: string[];
     year: string;
     live?: string;
+    /** Button text for `live`, e.g. "Project site" or "Walkthrough". Defaults to "Live app". */
+    liveLabel?: string;
+    /** YouTube demo video, shown as its own "Demo video" button. */
+    demoVideo?: string;
+    /** DEV (dev.to) write-up, shown as a "Read article" button. */
+    article?: string;
     repo: string;
     image: StaticImageData;
+    /** Describes the screenshot. Only used where the image is exposed to assistive tech;
+        the card thumbnail is decorative (alt=""), so it isn't rendered there. */
+    imageAlt?: string;
 }
 
 export const projects: Project[] = [
+    {
+        name: 'InfraMind',
+        kicker: 'AI DevOps file generator',
+        summary:
+            'Connect a GitHub repository and InfraMind clones it, runs analyzer, generator and verifier agents, and returns a validated Dockerfile, GitHub Actions workflow and .env.example to download or save.',
+        highlights: [
+            'Each generated file is validated and gets one repair attempt; the CI workflow must stay read-only with no registry push',
+            'Per-task AI provider chains (Gemini, Groq, OpenRouter, Novita) with retries and fallback',
+            'GitHub tokens encrypted with AES-256-GCM; live Socket.IO progress delivered only to the session owner',
+        ],
+        stack: ['React', 'TypeScript', 'Express', 'Socket.IO', 'Supabase'],
+        year: '2026',
+        live: 'https://inframind-frontend.onrender.com',
+        liveLabel: 'Live app',
+        repo: 'https://github.com/bipul724/InfraMind',
+        image: inframindShot,
+        imageAlt: 'InfraMind landing page',
+    },
+    {
+        name: 'ParchiMatch Lite',
+        kicker: 'Offline order matching for wholesalers',
+        summary:
+            'Turns messy Hinglish and Devanagari WhatsApp orders into checked billing rows matched to a shop’s own catalogue, running offline with a local Gemma model and asking one question when unsure.',
+        highlights: [
+            'Code reads every quantity, unit and price; the model only picks the product, and 16 safety rules check each pick',
+            'Hybrid fuzzy + model matching: 88.2% of lines handled without review and 0 wrong rows auto-accepted on a locked synthetic test set',
+            'Zero-dependency TypeScript on Node 24, with CI that fails if the locked test set changes',
+        ],
+        stack: ['TypeScript', 'Node.js', 'Ollama', 'Gemma', 'GitHub Actions'],
+        year: '2026',
+        live: 'https://bipul724.github.io/parchimatch/',
+        liveLabel: 'Project site',
+        demoVideo: 'https://youtu.be/lsl2cNpkY6U',
+        article:
+            'https://dev.to/bipul_chamoli_09b5f0cc719/red-label-adha-kg-2-box-an-offline-whatsapp-order-reader-for-indian-shops-that-asks-before-it-i96',
+        repo: 'https://github.com/bipul724/parchimatch',
+        image: parchimatchShot,
+        imageAlt: 'ParchiMatch Lite: a messy order line matched to a checked billing row',
+    },
+    {
+        name: 'Availazy',
+        kicker: 'Volunteer availability from chat messages',
+        summary:
+            'A local review tool that reads a week of volunteer chat messages, suggests availability records beside their source message, and exports a reconciled sheet built only from records a coordinator accepts.',
+        highlights: [
+            'A local Gemma model copies phrases; Python resolves dates, times and history and checks each quote against its message',
+            'Tracks offers, corrections, cancellations and conditions per person and day, leaving flagged cases for human review',
+            'Three readers (model + rules, model only, rules only), keyboard-driven review and formula-safe CSV export',
+        ],
+        stack: ['Python', 'Ollama', 'Gemma', 'JavaScript'],
+        year: '2026',
+        live: 'https://availability-ledger-replay.onrender.com',
+        liveLabel: 'Live replay',
+        demoVideo: 'https://youtu.be/Qlq_kEsDr4g',
+        article:
+            'https://dev.to/bipul_chamoli_09b5f0cc719/availazy-gemma-4-reads-the-volunteer-group-chat-on-my-laptop-python-does-the-dates-and-i-just-1nm8',
+        // Formerly "Availability Ledger"; the repo keeps the old slug.
+        repo: 'https://github.com/bipul724/availability-ledger',
+        image: availazyShot,
+        imageAlt: 'Availazy landing page with a message turning into a weekly availability sheet',
+    },
+    {
+        name: 'GhostCache',
+        kicker: 'AI memory provenance lab',
+        summary:
+            'A local testbed showing how a deleted document can persist in an assistant’s chunks, summaries and saved answers, and how a provenance graph traces and purges every derived copy.',
+        highlights: [
+            'SQLite provenance graph records every artifact given to the model as a parent; cleanup walks descendants with a recursive query in one transaction',
+            'Deterministic fixture mode and live mode with local Gemma via Ollama; live mode never silently falls back',
+            'Standard-library Python core with optional, metadata-only Sentry tracing',
+        ],
+        stack: ['Python', 'SQLite', 'Ollama', 'Gemma', 'Sentry'],
+        year: '2026',
+        live: 'https://ghostcache.bipulchamoli.tech/',
+        liveLabel: 'Walkthrough',
+        demoVideo: 'https://youtu.be/yzjmyaA-9Vw',
+        article: 'https://dev.to/bipul_chamoli_09b5f0cc719/ghostcache-deleting-the-file-didnt-delete-the-secret-3d5d',
+        repo: 'https://github.com/bipul724/GhostCache',
+        image: ghostcacheShot,
+        imageAlt: 'GhostCache lab showing the provenance graph of documents, chunks and summaries',
+    },
     {
         name: 'ReachNext',
         kicker: 'AI-native marketing CRM',
@@ -159,6 +254,26 @@ export const projects: Project[] = [
         live: 'https://zen-cash-oevg.vercel.app',
         repo: 'https://github.com/bipul724/ZenCash',
         image: zencashShot,
+    },
+    {
+        name: 'Prep Buddy',
+        kicker: 'Offline mock-interview coach',
+        summary:
+            'An offline mock-interview coach for campus placements that asks questions from a 56-question bank, grades typed answers with a local Gemma model, and targets weak topics using vector search.',
+        highlights: [
+            'Mastra agents for interviewer, evaluator and coach roles, with Zod-validated structured feedback',
+            'EmbeddingGemma embeddings and pgvector distance queries pick the next question closest to the user’s gaps',
+            'Runs entirely on localhost through Ollama: no API keys or cloud model calls',
+        ],
+        stack: ['Next.js', 'TypeScript', 'Mastra', 'pgvector', 'Ollama'],
+        year: '2026',
+        // Local-only app: no hosted demo, so the video is the only demo link.
+        demoVideo: 'https://youtu.be/TgRr7m_U_FE',
+        article:
+            'https://dev.to/bipul_chamoli_09b5f0cc719/prep-buddy-an-ai-interview-coach-for-my-classmate-that-runs-on-his-laptop-with-the-wi-fi-off-426b',
+        repo: 'https://github.com/bipul724/prep-buddy',
+        image: prepbuddyShot,
+        imageAlt: 'Prep Buddy landing page',
     },
 ];
 
